@@ -39,7 +39,7 @@ const MAJORS_DATABASE = {
       "金融信息服务模块": 10
     },
     "moduleRuleType": "selectOne",
-    "jsonPath": "database/1402计算机科学与技术专业本科培养方案_提取课程.json"
+    "jsonPath": "database/2025级/1402计算机科学与技术专业本科培养方案_提取课程.json"
   },
   "se_2025": {
     "id": "se_2025",
@@ -79,7 +79,7 @@ const MAJORS_DATABASE = {
       "智能媒体与数字技术": 10
     },
     "moduleRuleType": "selectOne",
-    "jsonPath": "database/1403软件工程专业本科培养方案_提取课程.json"
+    "jsonPath": "database/2025级/1403软件工程专业本科培养方案_提取课程.json"
   },
   "cs_edu_2025": {
     "id": "cs_edu_2025",
@@ -125,7 +125,7 @@ const MAJORS_DATABASE = {
       "数字媒体技术模块": 7.5
     },
     "moduleRuleType": "selectOne",
-    "jsonPath": "database/1401计算机科学与技术（师范）专业本科培养方案_提取课程.json"
+    "jsonPath": "database/2025级/1401计算机科学与技术（师范）专业本科培养方案_提取课程.json"
   },
   "ece_2025": {
     "id": "ece_2025",
@@ -164,7 +164,7 @@ const MAJORS_DATABASE = {
       "通信工程": 7.5
     },
     "moduleRuleType": "selectOne",
-    "jsonPath": "database/1404电子信息工程专业培养方案_提取课程.json"
+    "jsonPath": "database/2025级/1404电子信息工程专业培养方案_提取课程.json"
   },
   "gis_2025": {
     "id": "gis_2025",
@@ -206,6 +206,6 @@ const MAJORS_DATABASE = {
       "人工智能": 10
     },
     "moduleRuleType": "allRequired",
-    "jsonPath": "database/1405地理信息科学专业本科培养方案_提取课程.json"
+    "jsonPath": "database/2025级/1405地理信息科学专业本科培养方案_提取课程.json"
   }
 };
