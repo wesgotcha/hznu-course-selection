@@ -975,14 +975,12 @@ button.danger:hover {
     max-height: none;
     margin-top: 0;
   }
-  
-  th:nth-child(2), td:nth-child(2) { display: none; } /* Hide code on small screens */
 }
 
 @media (max-width: 640px) {
   .wrap { padding: 12px; }
   .table { font-size: 12px; }
-  th:nth-child(4), td:nth-child(4) { display: none; } /* Hide category tag on mobile */
+  .col-cat { display: none; } /* Hide category tag on mobile */
   .term-summary { grid-template-columns: 1fr; }
 }
 
@@ -1017,7 +1015,7 @@ button.danger:hover {
         <div class="controls-row">
           <div class="search-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input id="q" type="search" placeholder="搜索课程名、代码、建议学期……" />
+            <input id="q" type="search" placeholder="搜索课程名、建议学期……" />
           </div>
           <select id="cat"><option value="">全部类别</option></select>
           <select id="term"><option value="">全部学期</option></select>
@@ -1041,13 +1039,12 @@ button.danger:hover {
         <table class="table">
           <thead>
             <tr>
-              <th style="width: 40px;">达标</th>
-              <th style="width: 100px;">代码</th>
-              <th>课程</th>
-              <th style="width: 120px;">类别</th>
-              <th style="width: 60px;">学分</th>
-              <th style="width: 100px;">建议修读</th>
-              <th style="width: 110px;">我计划</th>
+              <th class="col-check" style="width: 40px;">达标</th>
+              <th class="col-name">课程</th>
+              <th class="col-cat" style="width: 120px;">类别</th>
+              <th class="col-credits" style="width: 60px;">学分</th>
+              <th class="col-term" style="width: 100px;">建议修读</th>
+              <th class="col-plan" style="width: 110px;">我计划</th>
             </tr>
           </thead>
           <tbody id="tbody"></tbody>
@@ -1215,7 +1212,7 @@ function loadMajorData(majorId) {
   baseCourses.forEach(c => c.term = termMap[c.term] || c.term || '待安排');
   
   // Initialize IDs
-  baseCourses.forEach((c, i) => c.id = (c.code || c.name).replace(/\W/g, '') + '_' + i);
+  baseCourses.forEach((c, i) => c.id = c.name.replace(/\W/g, '') + '_' + i);
   
   // Merge custom courses
   allCourses = [...baseCourses, ...customCourses];
@@ -1309,12 +1306,12 @@ function renderFilters(){
 
 function renderTable(){
  const kw=q.value.trim().toLowerCase(), ca=cat.value, te=term.value;
- const rows=allCourses.filter(c=>(!ca||c.cat===ca)&&isCourseInTerm(c,te)&&(!kw||[c.code,c.name,c.cat,c.term,c.group,c.notes].join(' ').toLowerCase().includes(kw)));
+ const rows=allCourses.filter(c=>(!ca||c.cat===ca)&&isCourseInTerm(c,te)&&(!kw||[c.name,c.cat,c.term,c.group,c.notes].join(' ').toLowerCase().includes(kw)));
  const planTerms=['大一上','大一下','大二上','大二下','大三上','大三下','大四上','大四下'];
  
  tbody.innerHTML=rows.map(c=>`
   <tr class="${checked.has(c.id)?'done':''}">
-    <td>
+    <td class="col-check">
       <label class="custom-checkbox-container" aria-label="选择 ${c.name}">
         <input class="check" type="checkbox" ${checked.has(c.id)?'checked':''} onchange="toggle('${c.id}')">
         <span class="checkmark">
@@ -1324,8 +1321,7 @@ function renderTable(){
         </span>
       </label>
     </td>
-    <td>${c.code||'—'}</td>
-    <td>
+    <td class="col-name">
       <div class="course-title-wrapper">
         <div class="course">${c.name}</div>
         ${c.isCustom ? `
@@ -1341,10 +1337,10 @@ function renderTable(){
       </div>
       <div class="meta">${c.isCustom ? '类型：' + c.group : (c.group ? c.group + ' · ' : '') + (c.notes || '')}</div>
     </td>
-    <td><span class="tag">${c.cat}</span></td>
-    <td class="credit">${fmt(c.credits)}</td>
-    <td><span class="tag">${c.term}</span></td>
-    <td>
+    <td class="col-cat"><span class="tag">${c.cat}</span></td>
+    <td class="col-credits credit">${fmt(c.credits)}</td>
+    <td class="col-term"><span class="tag">${c.term}</span></td>
+    <td class="col-plan">
       <select class="study-year" aria-label="${c.name}计划修读学期" onchange="setStudyYear('${c.id}',this.value)">
         <option value="">未标记</option>
         ${planTerms.map(y=>`<option ${studyYears[c.id]===y?'selected':''}>${y}</option>`).join('')}
@@ -1552,7 +1548,6 @@ addCourseOkBtn.onclick = () => {
   const customId = 'custom_' + Date.now();
   const newCourse = {
     id: customId,
-    code: '',
     name: name,
     credits: credits,
     cat: '通识选修',
