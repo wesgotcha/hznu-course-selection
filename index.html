@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>课程达标打勾｜计算机科学与技术 2025</title>
+<title>课程达标打勾管理系统</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
 
@@ -304,17 +304,6 @@ button.danger:hover {
   background: var(--danger);
   color: white;
   transform: translateY(-1px);
-}
-
-.notice {
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin: 12px 0 0;
-  padding: 10px 14px;
-  background: var(--bg-main);
-  border-left: 3px solid var(--brand);
-  border-radius: 4px 8px 8px 4px;
 }
 
 /* Table styling */
@@ -928,17 +917,21 @@ button.danger:hover {
   .card { box-shadow: none; border: 1px solid #ccc; background: #fff; }
 }
 </style>
+<script src="db.js"></script>
 </head>
 <body>
 <header>
   <div class="header-wrap">
     <div class="header-title">
-      <h1>杭州师范大学 2025 级计算机科学与技术本科培养方案｜勾选已修课程，自动计算毕业达标情况</h1>
+      <h1 id="headerTitle">杭州师范大学 2025 级计算机科学与技术本科培养方案｜勾选已修课程，自动计算毕业达标情况</h1>
     </div>
-    <button id="themeToggle" class="theme-toggle-btn" aria-label="切换主题">
-      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-    </button>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <select id="majorSelect" style="min-width: 180px; height: 38px; border-radius: 10px; font-weight: 600;" aria-label="选择专业与年级"></select>
+      <button id="themeToggle" class="theme-toggle-btn" aria-label="切换主题">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 <main class="wrap">
@@ -969,7 +962,6 @@ button.danger:hover {
           <button class="danger" id="resetBtn">清空</button>
         </div>
       </div>
-
     </section>
     <section class="card">
       <div class="table-container">
@@ -1003,7 +995,7 @@ button.danger:hover {
         <div>
           <div class="side-kpi-grid">
             <div class="side-kpi kpi-total">
-              <div class="kpi"><span id="totalDone">0</span>/151</div>
+              <div class="kpi"><span id="totalDone">0</span>/<span id="totalRequirementLabel">151</span></div>
               <div class="label">总学分进度</div>
               <div class="bar"><i id="totalBar"></i></div>
             </div>
@@ -1112,25 +1104,71 @@ button.danger:hover {
   </div>
 </div>
 
-<div class="footer">数据整理自《计算机科学与技术专业本科培养方案（2025级）》；本网页为本地静态页面，进度保存在浏览器 localStorage。</div>
+<div class="footer">数据整理自《本科专业培养方案》；本网页为本地静态页面，进度保存在浏览器 localStorage。</div>
 </main>
 <script>
-const courses = [{"code": "601112101", "name": "思想道德与法治", "credits": 3.0, "cat": "通识必修", "term": "一秋/一春", "group": "", "required": true, "notes": ""}, {"code": "601113101", "name": "中国近现代史纲要", "credits": 3.0, "cat": "通识必修", "term": "一秋/一春", "group": "", "required": true, "notes": ""}, {"code": "601114101", "name": "马克思主义基本原理", "credits": 3.0, "cat": "通识必修", "term": "二秋/二春", "group": "", "required": true, "notes": ""}, {"code": "601115101", "name": "毛泽东思想和中国特色社会主义理论体系概论", "credits": 3.0, "cat": "通识必修", "term": "二秋/二春", "group": "", "required": true, "notes": ""}, {"code": "601116101", "name": "习近平新时代中国特色社会主义思想概论", "credits": 3.0, "cat": "通识必修", "term": "二秋/二春", "group": "", "required": true, "notes": ""}, {"code": "601117101", "name": "形势与政策", "credits": 2.0, "cat": "通识必修", "term": "一二三年级", "group": "", "required": true, "notes": ""}, {"code": "061001001", "name": "大学体育Ⅰ", "credits": 1.0, "cat": "通识必修", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "061001002", "name": "大学体育Ⅱ", "credits": 1.0, "cat": "通识必修", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "061001003", "name": "大学体育Ⅲ", "credits": 1.0, "cat": "通识必修", "term": "二秋", "group": "", "required": true, "notes": ""}, {"code": "061001004", "name": "大学体育Ⅳ", "credits": 1.0, "cat": "通识必修", "term": "二春", "group": "", "required": true, "notes": ""}, {"code": "761002311", "name": "军事训练", "credits": 2.0, "cat": "通识必修", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "761002312", "name": "国防教育", "credits": 2.0, "cat": "通识必修", "term": "二秋", "group": "", "required": true, "notes": ""}, {"code": "601118001", "name": "国家安全教育", "credits": 1.0, "cat": "通识必修", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "", "name": "大学外语（基础拓展）", "credits": 3.0, "cat": "通识必修", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "", "name": "大学外语（进阶拓展）", "credits": 3.0, "cat": "通识必修", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "", "name": "大学外语（高阶课程）", "credits": 2.0, "cat": "通识必修", "term": "二三年级", "group": "", "required": true, "notes": ""}, {"code": "104000001", "name": "大学生心理健康教育", "credits": 1.0, "cat": "通识必修", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "761001401", "name": "大学生职业发展与就业指导", "credits": 1.0, "cat": "通识必修", "term": "二秋/三秋", "group": "", "required": true, "notes": ""}, {"code": "", "name": "通识选修：艺术鉴赏与审美体验", "credits": 2.0, "cat": "通识选修", "term": "春秋滚动", "group": "通识选修", "required": false, "notes": "必修 2 学分"}, {"code": "", "name": "通识选修：人工智能与现代生活", "credits": 2.0, "cat": "通识选修", "term": "春秋滚动", "group": "通识选修", "required": false, "notes": "必修 2 学分"}, {"code": "", "name": "通识选修：“四史教育”专题", "credits": 1.0, "cat": "通识选修", "term": "春秋滚动", "group": "通识选修", "required": false, "notes": "4 选 1，1 学分"}, {"code": "", "name": "通识选修：其他通识课程", "credits": 5.0, "cat": "通识选修", "term": "春秋滚动", "group": "通识选修", "required": false, "notes": "补足通识选修至 10 学分"}, {"code": "024902061", "name": "高等数学A1", "credits": 5.0, "cat": "专业基础", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "024903063", "name": "线性代数A3", "credits": 3.0, "cat": "专业基础", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "2240011A1", "name": "计算机科学导论", "credits": 2.0, "cat": "专业基础", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "224438101", "name": "程序设计基础", "credits": 4.0, "cat": "专业基础", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "024902062", "name": "高等数学A2", "credits": 4.0, "cat": "专业基础", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "224439001", "name": "数据结构", "credits": 3.0, "cat": "专业核心", "term": "二秋", "group": "", "required": true, "notes": ""}, {"code": "224440101", "name": "计算机组成与系统结构", "credits": 3.5, "cat": "专业核心", "term": "二秋", "group": "", "required": true, "notes": ""}, {"code": "2241241A1", "name": "操作系统", "credits": 3.5, "cat": "专业核心", "term": "二春", "group": "", "required": true, "notes": ""}, {"code": "2241711A1", "name": "数据库原理", "credits": 3.5, "cat": "专业核心", "term": "二春", "group": "", "required": true, "notes": ""}, {"code": "224441002", "name": "算法设计与分析", "credits": 2.0, "cat": "专业核心", "term": "二春", "group": "", "required": true, "notes": ""}, {"code": "2241411A1", "name": "计算机网络", "credits": 3.0, "cat": "专业核心", "term": "三秋", "group": "", "required": true, "notes": ""}, {"code": "224442002", "name": "软件工程", "credits": 2.0, "cat": "专业核心", "term": "三春", "group": "", "required": true, "notes": ""}, {"code": "225632101", "name": "人工智能", "credits": 2.5, "cat": "专业核心", "term": "三秋", "group": "", "required": true, "notes": ""}, {"code": "024A11001", "name": "大学物理B", "credits": 4.0, "cat": "专业限选", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "024906001", "name": "概率与数理统计", "credits": 3.0, "cat": "专业限选", "term": "二秋", "group": "", "required": true, "notes": ""}, {"code": "225666002", "name": "离散数学", "credits": 3.0, "cat": "专业限选", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "225682101", "name": "数据科学导论", "credits": 2.5, "cat": "专业限选", "term": "一秋", "group": "", "required": true, "notes": ""}, {"code": "225683102", "name": "软件工程经济", "credits": 2.5, "cat": "专业限选", "term": "三春", "group": "", "required": true, "notes": ""}, {"code": "225200001", "name": "智能优化计算", "credits": 2.0, "cat": "主修专业选修", "term": "二春", "group": "人工智能+模块", "required": false, "notes": ""}, {"code": "2251931A1", "name": "云计算与大数据", "credits": 2.5, "cat": "主修专业选修", "term": "三秋", "group": "人工智能+模块", "required": false, "notes": ""}, {"code": "225621102", "name": "神经网络和深度学习", "credits": 2.5, "cat": "主修专业选修", "term": "三秋", "group": "人工智能+模块", "required": false, "notes": ""}, {"code": "225667002", "name": "大语言模型原理与应用", "credits": 1.5, "cat": "主修专业选修", "term": "三春", "group": "人工智能+模块", "required": false, "notes": ""}, {"code": "2251951A1", "name": "Java 程序设计", "credits": 3.0, "cat": "主修专业选修", "term": "二秋", "group": "高级软件技术模块", "required": false, "notes": ""}, {"code": "225680102", "name": "Web 应用开发", "credits": 3.0, "cat": "主修专业选修", "term": "二春", "group": "高级软件技术模块", "required": false, "notes": ""}, {"code": "2251911A1", "name": "移动应用开发（Android）", "credits": 3.0, "cat": "主修专业选修", "term": "三秋", "group": "高级软件技术模块", "required": false, "notes": ""}, {"code": "225668101", "name": "编译原理", "credits": 3.5, "cat": "主修专业选修", "term": "三秋", "group": "高级软件技术模块", "required": false, "notes": ""}, {"code": "225681101", "name": "多媒体应用开发", "credits": 2.5, "cat": "主修专业选修", "term": "二秋", "group": "数字媒体技术模块", "required": false, "notes": ""}, {"code": "225669102", "name": "计算机图形学", "credits": 2.5, "cat": "主修专业选修", "term": "二春", "group": "数字媒体技术模块", "required": false, "notes": ""}, {"code": "225197101", "name": "数字图像处理", "credits": 3.0, "cat": "主修专业选修", "term": "二春", "group": "数字媒体技术模块", "required": false, "notes": ""}, {"code": "225620102", "name": "UI 与交互设计", "credits": 3.0, "cat": "主修专业选修", "term": "二春/三秋", "group": "数字媒体技术模块", "required": false, "notes": ""}, {"code": "225670101", "name": "信息安全竞赛", "credits": 2.0, "cat": "主修专业选修", "term": "一秋", "group": "信息安全模块", "required": false, "notes": ""}, {"code": "225671002", "name": "应用密码学", "credits": 3.0, "cat": "主修专业选修", "term": "二春", "group": "信息安全模块", "required": false, "notes": ""}, {"code": "225672101", "name": "安全协议及应用", "credits": 2.5, "cat": "主修专业选修", "term": "三秋", "group": "信息安全模块", "required": false, "notes": ""}, {"code": "2251791A1", "name": "网络安全", "credits": 2.0, "cat": "主修专业选修", "term": "三秋", "group": "信息安全模块", "required": false, "notes": ""}, {"code": "225066301", "name": "信息安全工程", "credits": 1.0, "cat": "主修专业选修", "term": "三春", "group": "信息安全模块", "required": false, "notes": ""}, {"code": "225684101", "name": "数字金融", "credits": 2.5, "cat": "主修专业选修", "term": "二秋", "group": "金融信息服务模块", "required": false, "notes": ""}, {"code": "225685101", "name": "大数据财务决策", "credits": 2.5, "cat": "主修专业选修", "term": "二秋", "group": "金融信息服务模块", "required": false, "notes": ""}, {"code": "225686102", "name": "金融工程与计算", "credits": 2.5, "cat": "主修专业选修", "term": "二春", "group": "金融信息服务模块", "required": false, "notes": ""}, {"code": "225687102", "name": "智能证券投资", "credits": 2.5, "cat": "主修专业选修", "term": "二春", "group": "金融信息服务模块", "required": false, "notes": ""}, {"code": "225688101", "name": "金融数据分析与大模型", "credits": 2.5, "cat": "主修专业选修", "term": "三秋", "group": "金融信息服务模块", "required": false, "notes": ""}, {"code": "2251171A1", "name": "Python 程序设计", "credits": 3.0, "cat": "主修专业选修", "term": "一春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "2251121A1", "name": "C++程序设计", "credits": 3.0, "cat": "主修专业选修", "term": "一春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225673102", "name": "数字逻辑", "credits": 3.5, "cat": "主修专业选修", "term": "一春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225679002", "name": "经济学原理", "credits": 2.0, "cat": "主修专业选修", "term": "一春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "2251161A1", "name": "Matlab 程序设计", "credits": 3.0, "cat": "主修专业选修", "term": "二秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225393101", "name": "数字孪生技术与应用", "credits": 2.5, "cat": "主修专业选修", "term": "二秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "2251151A1", "name": "Linux 程序设计", "credits": 1.5, "cat": "主修专业选修", "term": "二春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225674001", "name": "高级数据结构", "credits": 2.0, "cat": "主修专业选修", "term": "三秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "2251611A1", "name": "人机交互与虚拟现实", "credits": 2.5, "cat": "主修专业选修", "term": "三秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "2251221A1", "name": "Web 服务器端开发", "credits": 3.0, "cat": "主修专业选修", "term": "三秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225675101", "name": "计算机视觉", "credits": 2.5, "cat": "主修专业选修", "term": "三秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225392101", "name": "智能控制与机器人技术", "credits": 3.5, "cat": "主修专业选修", "term": "三春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225676102", "name": "大规模数据挖掘", "credits": 2.5, "cat": "主修专业选修", "term": "三春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225614001", "name": "物联网概论", "credits": 2.0, "cat": "主修专业选修", "term": "二秋", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225677101", "name": "智能信息管理与应用", "credits": 2.5, "cat": "主修专业选修", "term": "三春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "225678002", "name": "职业规划与素养", "credits": 2.0, "cat": "主修专业选修", "term": "三春", "group": "专业任选课", "required": false, "notes": ""}, {"code": "224443302", "name": "ACM 编程实践", "credits": 2.0, "cat": "专业实践", "term": "一春", "group": "", "required": true, "notes": ""}, {"code": "224444301", "name": "数据结构实验", "credits": 1.0, "cat": "专业实践", "term": "二秋", "group": "", "required": true, "notes": ""}, {"code": "224445302", "name": "AI 时代的专业劳动教育", "credits": 2.0, "cat": "专业实践", "term": "二春", "group": "", "required": true, "notes": ""}, {"code": "224446302", "name": "算法设计与分析实验", "credits": 1.0, "cat": "专业实践", "term": "二春", "group": "", "required": true, "notes": ""}, {"code": "224447302", "name": "软件工程课程设计", "credits": 1.0, "cat": "专业实践", "term": "三春", "group": "", "required": true, "notes": ""}, {"code": "224448302", "name": "网络工程", "credits": 1.5, "cat": "专业实践", "term": "三春", "group": "", "required": true, "notes": ""}, {"code": "224434302", "name": "科研实务", "credits": 2.0, "cat": "专业实践", "term": "三春", "group": "", "required": true, "notes": ""}, {"code": "224435302", "name": "互联网创新创业", "credits": 2.0, "cat": "专业实践", "term": "三春", "group": "", "required": true, "notes": ""}, {"code": "224196301", "name": "专业见习", "credits": 2.0, "cat": "专业实践", "term": "四春/秋", "group": "", "required": true, "notes": ""}, {"code": "224092301", "name": "专业实习", "credits": 8.0, "cat": "专业实践", "term": "四春/秋", "group": "", "required": true, "notes": ""}, {"code": "224436302", "name": "毕业论文（设计）", "credits": 8.0, "cat": "专业实践", "term": "四春/秋", "group": "", "required": true, "notes": ""}, {"code": "", "name": "Ⅱ类学分：劳动教育类", "credits": 2.0, "cat": "Ⅱ类学分", "term": "", "group": "Ⅱ类", "required": false, "notes": "不少于 2 学分"}, {"code": "", "name": "Ⅱ类学分：社会实践类", "credits": 2.0, "cat": "Ⅱ类学分", "term": "", "group": "Ⅱ类", "required": false, "notes": "不高于/计入 2 学分；寒暑期社会实践至少 1，心理健康实践至少 1"}];
-const targets={'通识必修':36,'通识选修':10,'专业基础':18,'专业核心':23,'专业限选':15,'主修专业选修':14.5,'专业实践':30.5,'Ⅱ类学分':4};
-const moduleTargets={'人工智能+模块':7.5,'高级软件技术模块':7.5,'数字媒体技术模块':7.5,'信息安全模块':7.5,'金融信息服务模块':10};
-const termMap={'一秋':'大一上','一春':'大一下','二秋':'大二上','二春':'大二下','三秋':'大三上','三春':'大三下','四秋':'大四上','四春':'大四下','oneAutumn':'大一上','oneSpring':'大一下','twoAutumn':'大二上','twoSpring':'大二下','threeAutumn':'大三上','threeSpring':'大三下','fourAutumn':'大四上','fourSpring':'大四下','一秋/一春':'大一上/大一下','二秋/二春':'大二上/大二下','二春/三秋':'大二下/大三上','二秋/三秋':'大二上/大三上','四春/秋':'大四上/大四下','一二三年级':'大一至大三','二三年级':'大二至大三','春秋滚动':'大一至大四'};
-courses.forEach(c=>c.term=termMap[c.term]||c.term||'待安排');
+const termMap={'一秋':'大一上','一春':'大一下','二秋':'大二上','二春':'大二下','三秋':'大三上','三春':'大三下','四秋':'大四上','四春':'大四下','oneAutumn':'大一上','oneSpring':'大一下','twoAutumn':'大二上','twoSpring':'大二下','threeAutumn':'大三上','threeSpring':'大三下','fourAutumn':'大四上','fourSpring':'大四下','oneAutumn/oneSpring':'大一上/大一下','twoAutumn/twoSpring':'大二上/大二下','twoSpring/threeAutumn':'大二下/大三上','twoAutumn/threeAutumn':'大二上/大三上','fourSpring/Autumn':'大四上/大四下','一秋/一春':'大一上/大一下','二秋/二春':'大二上/大二下','二春/三秋':'大二下/大三上','二秋/三秋':'大二上/大三上','四春/秋':'大四上/大四下','一二三年级':'大一至大三','二三年级':'大二至大三','春秋滚动':'大一至大四'};
 
-let checked=new Set(JSON.parse(localStorage.getItem('courseChecks')||'[]'));
-let studyYears=JSON.parse(localStorage.getItem('courseStudyYears')||'{}');
-let customCourses=JSON.parse(localStorage.getItem('customCourses')||'[]');
-let allCourses=[];
+// Dynamic Major Selection & Configuration
+let currentMajorId = localStorage.getItem('currentMajorId') || Object.keys(MAJORS_DATABASE)[0];
+let currentMajor = MAJORS_DATABASE[currentMajorId] || MAJORS_DATABASE[Object.keys(MAJORS_DATABASE)[0]];
 
-function initCourses() {
-  courses.forEach((c,i)=>c.id=(c.code||c.name).replace(/\W/g,'')+'_'+i);
-  allCourses=[...courses,...customCourses];
+let targets = {};
+let moduleTargets = {};
+let checked = new Set();
+let studyYears = {};
+let customCourses = [];
+let allCourses = [];
+
+function loadMajorData(majorId) {
+  currentMajorId = majorId;
+  currentMajor = MAJORS_DATABASE[majorId] || MAJORS_DATABASE[Object.keys(MAJORS_DATABASE)[0]];
+  localStorage.setItem('currentMajorId', currentMajorId);
+  
+  // Update header text dynamically
+  document.getElementById('headerTitle').textContent = `${currentMajor.name} (${currentMajor.grade}) 本科培养方案课达标管理`;
+  document.getElementById('totalRequirementLabel').textContent = currentMajor.totalCreditsRequirement;
+  
+  // Set targets
+  targets = currentMajor.targets;
+  moduleTargets = currentMajor.moduleTargets;
+  
+  // Set namespaced local storage data
+  checked = new Set(JSON.parse(localStorage.getItem(`courseChecks_${currentMajorId}`) || '[]'));
+  studyYears = JSON.parse(localStorage.getItem(`courseStudyYears_${currentMajorId}`) || '{}');
+  customCourses = JSON.parse(localStorage.getItem(`customCourses_${currentMajorId}`) || '[]');
+  
+  // Parse and normalize courses
+  const baseCourses = JSON.parse(JSON.stringify(currentMajor.courses));
+  baseCourses.forEach(c => c.term = termMap[c.term] || c.term || '待安排');
+  
+  // Initialize IDs
+  baseCourses.forEach((c, i) => c.id = (c.code || c.name).replace(/\W/g, '') + '_' + i);
+  
+  // Merge custom courses
+  allCourses = [...baseCourses, ...customCourses];
+  
+  // Reset search filters
+  q.value = '';
+  cat.value = '';
+  term.value = '';
+  
+  // Render dropdown filters, table, and statistics
+  renderFilters();
+  renderTable();
+  renderSummary();
 }
-initCourses();
+
+function initMajorSelector() {
+  const majorSelect = document.getElementById('majorSelect');
+  majorSelect.innerHTML = Object.keys(MAJORS_DATABASE).map(k => `
+    <option value="${k}" ${k === currentMajorId ? 'selected' : ''}>${MAJORS_DATABASE[k].name} (${MAJORS_DATABASE[k].grade})</option>
+  `).join('');
+  
+  majorSelect.onchange = (e) => {
+    loadMajorData(e.target.value);
+  };
+}
 
 // Apply theme on load and follow system changes
 const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -1249,12 +1287,10 @@ function rule(name,done,target,extra=''){let ok=done>=target-1e-9;return {name,d
 function calcRules(){
  const base=Object.entries(targets).map(([k,t])=>rule(k,sum(c=>c.cat===k),t));
  
- // Add new General Education sub-rules (checking custom group or placeholder name)
- const geSubRules = [
-   rule('艺术鉴赏与审美体验', sum(c=>c.cat==='通识选修'&&(c.group==='艺术鉴赏与审美体验'||c.name.includes('艺术鉴赏与审美体验'))), 2, '通识选修子要求（需≥2学分）'),
-   rule('人工智能与现代生活', sum(c=>c.cat==='通识选修'&&(c.group==='人工智能与现代生活'||c.name.includes('人工智能与现代生活'))), 2, '通识选修子要求（需≥2学分）'),
-   rule('“四史教育”专题', sum(c=>c.cat==='通识选修'&&(c.group==='“四史教育”专题'||c.name.includes('“四史教育”专题'))), 1, '通识选修子要求（需≥1学分）')
- ];
+ // Dynamic General Education sub-rules from currentMajor
+ const geSubRules = (currentMajor.geSubRules || []).map(r => 
+   rule(r.name, sum(c => c.cat === '通识选修' && (c.group === r.name || c.name.includes(r.name))), r.target, r.notes)
+ );
  
  let moduleSums={}; Object.keys(moduleTargets).forEach(m=>moduleSums[m]=sum(c=>c.group===m));
  let best=Object.entries(moduleSums).sort((a,b)=>b[1]-a[1])[0]||['未选择',0];
@@ -1289,8 +1325,8 @@ function renderRules(){
 }
 
 function renderSummary(){
- const total=sum(c=>true); totalDone.textContent=fmt(total); totalBar.style.width=Math.min(100,total/151*100)+'%';
- leftCredits.textContent=fmt(Math.max(0,151-total)); leftBar.style.width=Math.min(100,total/151*100)+'%';
+ const total=sum(c=>true); totalDone.textContent=fmt(total); totalBar.style.width=Math.min(100,total/currentMajor.totalCreditsRequirement*100)+'%';
+ leftCredits.textContent=fmt(Math.max(0,currentMajor.totalCreditsRequirement-total)); leftBar.style.width=Math.min(100,total/currentMajor.totalCreditsRequirement*100)+'%';
  checkedCount.textContent=checked.size; checkedBar.style.width=Math.min(100,checked.size/allCourses.length*100)+'%';
  sideCount.textContent=checked.size;
  
@@ -1325,7 +1361,7 @@ function renderSummary(){
 
 function toggle(cid){
  checked.has(cid)?checked.delete(cid):checked.add(cid);
- localStorage.setItem('courseChecks',JSON.stringify([...checked]));
+ localStorage.setItem(`courseChecks_${currentMajorId}`,JSON.stringify([...checked]));
  renderTable();
  renderSummary();
 }
@@ -1338,7 +1374,7 @@ function toggleFold(trigger){
 
 function setStudyYear(cid,year){
  if(year) studyYears[cid]=year; else delete studyYears[cid];
- localStorage.setItem('courseStudyYears',JSON.stringify(studyYears));
+ localStorage.setItem(`courseStudyYears_${currentMajorId}`,JSON.stringify(studyYears));
  renderSummary();
 }
 
@@ -1347,7 +1383,7 @@ function exportProgress(){
  const blob=new Blob([JSON.stringify({checked:[...checked],studyYears,customCourses,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});
  const a=document.createElement('a');
  a.href=URL.createObjectURL(blob);
- a.download='课程达标进度.json';
+ a.download=`课程达标进度_${currentMajorId}.json`;
  a.click();
  URL.revokeObjectURL(a.href);
 }
@@ -1361,13 +1397,12 @@ function importProgress(file){
      checked=new Set(data.checked||[]);
      studyYears=data.studyYears||{};
      customCourses=data.customCourses||[];
-     localStorage.setItem('courseChecks',JSON.stringify([...checked]));
-     localStorage.setItem('courseStudyYears',JSON.stringify(studyYears));
-     localStorage.setItem('customCourses',JSON.stringify(customCourses));
+     localStorage.setItem(`courseChecks_${currentMajorId}`,JSON.stringify([...checked]));
+     localStorage.setItem(`courseStudyYears_${currentMajorId}`,JSON.stringify(studyYears));
+     localStorage.setItem(`customCourses_${currentMajorId}`,JSON.stringify(customCourses));
      
-     allCourses=[...courses,...customCourses];
-     renderTable();
-     renderSummary();
+     // Reload based on current major
+     loadMajorData(currentMajorId);
    }catch(e){
      alert('导入失败：不是有效 JSON')
    }
@@ -1392,12 +1427,10 @@ okBtn.onclick = () => {
   checked.clear();
   studyYears={};
   customCourses=[];
-  localStorage.removeItem('courseChecks');
-  localStorage.removeItem('courseStudyYears');
-  localStorage.removeItem('customCourses');
-  allCourses=[...courses,...customCourses];
-  renderTable();
-  renderSummary();
+  localStorage.removeItem(`courseChecks_${currentMajorId}`);
+  localStorage.removeItem(`courseStudyYears_${currentMajorId}`);
+  localStorage.removeItem(`customCourses_${currentMajorId}`);
+  loadMajorData(currentMajorId);
   hideResetModal();
 };
 modal.onclick = (e) => {
@@ -1451,14 +1484,11 @@ addCourseOkBtn.onclick = () => {
     studyYears[customId] = termVal;
   }
   
-  localStorage.setItem('customCourses', JSON.stringify(customCourses));
-  localStorage.setItem('courseChecks', JSON.stringify([...checked]));
-  localStorage.setItem('courseStudyYears', JSON.stringify(studyYears));
+  localStorage.setItem(`customCourses_${currentMajorId}`, JSON.stringify(customCourses));
+  localStorage.setItem(`courseChecks_${currentMajorId}`, JSON.stringify([...checked]));
+  localStorage.setItem(`courseStudyYears_${currentMajorId}`, JSON.stringify(studyYears));
   
-  allCourses=[...courses,...customCourses];
-  
-  renderTable();
-  renderSummary();
+  loadMajorData(currentMajorId);
   addCourseModal.classList.remove('active');
 };
 
@@ -1466,7 +1496,6 @@ addCourseOkBtn.onclick = () => {
 window.openAddModalWithGroup = function(groupName, event) {
   if (event) event.stopPropagation();
   
-  // Normalize groupName in case it has trailing info, e.g. "其他通识课程"
   const normalized = groupName.trim();
   
   document.getElementById('customName').value = '';
@@ -1482,12 +1511,10 @@ window.deleteCustomCourse = function(cid, event) {
     customCourses = customCourses.filter(c => c.id !== cid);
     checked.delete(cid);
     delete studyYears[cid];
-    localStorage.setItem('customCourses', JSON.stringify(customCourses));
-    localStorage.setItem('courseChecks', JSON.stringify([...checked]));
-    localStorage.setItem('courseStudyYears', JSON.stringify(studyYears));
-    allCourses = [...courses, ...customCourses];
-    renderTable();
-    renderSummary();
+    localStorage.setItem(`customCourses_${currentMajorId}`, JSON.stringify(customCourses));
+    localStorage.setItem(`courseChecks_${currentMajorId}`, JSON.stringify([...checked]));
+    localStorage.setItem(`courseStudyYears_${currentMajorId}`, JSON.stringify(studyYears));
+    loadMajorData(currentMajorId);
   }
 };
 
@@ -1499,9 +1526,8 @@ importBtn.onclick=()=>importFile.click();
 importFile.onchange=e=>e.target.files[0]&&importProgress(e.target.files[0]);
 resetBtn.onclick=showResetModal;
 
-renderFilters();
-renderTable();
-renderSummary();
+initMajorSelector();
+loadMajorData(currentMajorId);
 </script>
 </body>
 </html>
