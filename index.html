@@ -100,23 +100,42 @@ header.collapsed {
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 10px;
-}
-
-.header-row-top {
-  display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
 }
 
+.header-title-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
+.inline-major-select {
+  font-family: var(--font-sans);
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 28px 0 6px !important;
+  height: auto !important;
+  cursor: pointer;
+  border-radius: 8px !important;
+  outline: none !important;
+  transition: all 0.2s ease !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+}
 
-.header-title h1 {
+.inline-major-select:hover, .inline-major-select:focus {
+  background-color: var(--soft) !important;
+}
+
+.inline-header-title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-sans);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -125,13 +144,6 @@ header.collapsed {
   -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.header-title .sub {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-top: 2px;
 }
 
 .theme-toggle-btn {
@@ -949,16 +961,14 @@ button.danger:hover {
 <body>
 <header>
   <div class="header-wrap">
-    <div class="header-row-top">
-      <select id="majorSelect" style="min-width: 180px; height: 38px; border-radius: 10px; font-weight: 600;" aria-label="选择专业与年级"></select>
-      <button id="themeToggle" class="theme-toggle-btn" aria-label="切换主题">
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
+    <div class="header-title-container">
+      <select id="majorSelect" class="inline-major-select" aria-label="选择专业与年级"></select>
+      <h1 id="headerTitle" class="inline-header-title">本科培养方案课达标管理</h1>
     </div>
-    <div class="header-title">
-      <h1 id="headerTitle">杭州师范大学 2025 级计算机科学与技术本科培养方案｜勾选已修课程，自动计算毕业达标情况</h1>
-    </div>
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="切换主题">
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </button>
   </div>
 </header>
 <main class="wrap">
@@ -1153,7 +1163,6 @@ function loadMajorData(majorId) {
   localStorage.setItem('currentMajorId', currentMajorId);
   
   // Update header text dynamically
-  document.getElementById('headerTitle').textContent = `${currentMajor.name} (${currentMajor.grade}) 本科培养方案课达标管理`;
   document.getElementById('totalRequirementLabel').textContent = currentMajor.totalCreditsRequirement;
   
   // Set targets
