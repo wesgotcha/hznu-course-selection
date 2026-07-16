@@ -1295,6 +1295,14 @@ async function loadMajorData(majorId) {
     studyYears[newId] = rawStudyYears[oldId];
   }
   
+  // Default planned term if only one suggested term is available and not already set
+  const planTerms = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'];
+  baseCourses.forEach(c => {
+    if (planTerms.includes(c.term) && !studyYears[c.id]) {
+      studyYears[c.id] = c.term;
+    }
+  });
+  
   // Save migrated data back to localStorage to clean it up
   localStorage.setItem(`courseChecks_${currentMajorId}`, JSON.stringify([...checked]));
   localStorage.setItem(`courseStudyYears_${currentMajorId}`, JSON.stringify(studyYears));
