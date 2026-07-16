@@ -410,6 +410,14 @@ button.danger:hover {
   vertical-align: middle;
 }
 
+.col-check, .col-cat, .col-credits, .col-term, .col-plan {
+  text-align: center;
+}
+.col-plan {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
 .table tr:last-child td {
   border-bottom: none;
 }
@@ -509,13 +517,17 @@ button.danger:hover {
 .study-year {
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 4px 6px;
+  padding: 4px 2px;
   background: var(--bg-main);
   color: var(--text-primary);
   font-size: 11px;
   outline: none;
   cursor: pointer;
   transition: border-color 0.2s;
+  text-align: center;
+  text-align-last: center;
+  width: 100%;
+  max-width: 72px;
 }
 
 .study-year:focus {
@@ -1041,13 +1053,13 @@ button.danger:hover {
         <table class="table">
           <thead>
             <tr>
-              <th class="col-check" style="width: 40px;">达标</th>
+              <th class="col-check" style="width: 50px;">达标</th>
               <th class="col-code" style="width: 90px;">代码</th>
               <th class="col-name">课程</th>
               <th class="col-cat" style="width: 90px;">类别</th>
               <th class="col-credits" style="width: 50px;">学分</th>
               <th class="col-term" style="width: 80px;">建议修读</th>
-              <th class="col-plan" style="width: 95px;">我计划</th>
+              <th class="col-plan" style="width: 80px;">我计划</th>
             </tr>
           </thead>
           <tbody id="tbody"></tbody>
