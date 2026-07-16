@@ -1206,6 +1206,39 @@ let customCourses = [];
 let allCourses = [];
 
 
+function migrateId(oldId, courses) {
+  if (oldId.startsWith('custom_')) return oldId;
+  const lastUnderscore = oldId.lastIndexOf('_');
+  if (lastUnderscore === -1) return oldId;
+  const prefix = oldId.substring(0, lastUnderscore);
+  const indexStr = oldId.substring(lastUnderscore + 1);
+  if (prefix) {
+    const found = courses.find(c => c.code === prefix || c.name === prefix);
+    if (found) return found.code || found.name;
+    const foundRelaxed = courses.find(c => c.name.replace(/\s+/g, '') === prefix.replace(/\s+/g, ''));
+    if (foundRelaxed) return foundRelaxed.code || foundRelaxed.name;
+    return prefix;
+  } else {
+    const oldIndexMap = {
+      '13': '大学外语（基础拓展）',
+      '14': '大学外语（进阶拓展）',
+      '15': '大学外语（高阶课程）',
+      '18': '通识选修：艺术鉴赏与审美体验',
+      '19': '通识选修：人工智能与现代生活',
+      '20': '通识选修：“四史教育”专题',
+      '21': '通识选修：其他通识课程',
+      '89': 'Ⅱ类学分：劳动教育类',
+      '90': 'Ⅱ类学分：社会实践类'
+    };
+    const courseName = oldIndexMap[indexStr];
+    if (courseName) {
+      const found = courses.find(c => c.name === courseName);
+      if (found) return found.code || found.name;
+    }
+  }
+  return oldId;
+}
+
 async function loadMajorData(majorId) {
   currentMajorId = majorId;
   currentMajor = MAJORS_DATABASE[majorId] || MAJORS_DATABASE[Object.keys(MAJORS_DATABASE)[0]];
@@ -1219,8 +1252,8 @@ async function loadMajorData(majorId) {
   moduleTargets = currentMajor.moduleTargets;
   
   // Set namespaced local storage data
-  checked = new Set(JSON.parse(localStorage.getItem(`courseChecks_${currentMajorId}`) || '[]'));
-  studyYears = JSON.parse(localStorage.getItem(`courseStudyYears_${currentMajorId}`) || '{}');
+  const rawChecked = JSON.parse(localStorage.getItem(`courseChecks_${currentMajorId}`) || '[]');
+  const rawStudyYears = JSON.parse(localStorage.getItem(`courseStudyYears_${currentMajorId}`) || '{}');
   customCourses = JSON.parse(localStorage.getItem(`customCourses_${currentMajorId}`) || '[]');
   
   let baseCourses = [];
@@ -1252,6 +1285,18 @@ async function loadMajorData(majorId) {
   
   // Merge custom courses
   allCourses = [...baseCourses, ...customCourses];
+  
+  // Migrate checked and studyYears if they contain old-style IDs
+  checked = new Set(rawChecked.map(id => migrateId(id, allCourses)));
+  studyYears = {};
+  for (const oldId in rawStudyYears) {
+    const newId = migrateId(oldId, allCourses);
+    studyYears[newId] = rawStudyYears[oldId];
+  }
+  
+  // Save migrated data back to localStorage to clean it up
+  localStorage.setItem(`courseChecks_${currentMajorId}`, JSON.stringify([...checked]));
+  localStorage.setItem(`courseStudyYears_${currentMajorId}`, JSON.stringify(studyYears));
   
   // Reset search filters
   q.value = '';
