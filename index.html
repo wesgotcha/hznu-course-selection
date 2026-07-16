@@ -1588,9 +1588,11 @@ loadMajorData(currentMajorId);
 (function() {
   const headerEl = document.querySelector('header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    const sy = window.scrollY;
+    const isCollapsed = headerEl.classList.contains('collapsed');
+    if (!isCollapsed && sy > 80) {
       headerEl.classList.add('collapsed');
-    } else {
+    } else if (isCollapsed && sy < 20) {
       headerEl.classList.remove('collapsed');
     }
   }, { passive: true });
