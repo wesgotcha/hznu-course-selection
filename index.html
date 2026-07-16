@@ -101,15 +101,9 @@ header {
 
 .header-row-top {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
-}
-
-@media (max-width: 768px) {
-  .header-row-top {
-    justify-content: flex-start;
-  }
 }
 
 .header-title h1 {
@@ -149,6 +143,11 @@ header {
 .theme-toggle-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px var(--brand-glow);
+}
+
+.theme-toggle-btn svg {
+  width: 22px !important;
+  height: 22px !important;
 }
 
 .theme-toggle-btn .sun-icon { display: block; }
