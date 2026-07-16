@@ -87,6 +87,11 @@ header {
   backdrop-filter: var(--glass-blur);
   border-bottom: 1px solid var(--border-color);
   padding: 14px 0;
+  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.collapsed {
+  padding: 8px 0;
 }
 
 .header-wrap {
@@ -104,6 +109,24 @@ header {
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+}
+
+.header-title {
+  max-height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease,
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              margin 0.3s ease;
+  overflow: hidden;
+}
+
+header.collapsed .header-title {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
 .header-title h1 {
@@ -175,12 +198,18 @@ header {
 
 .side-panel {
   position: sticky;
-  top: 90px;
-  max-height: calc(100vh - 110px);
+  top: 120px;
+  max-height: calc(100vh - 140px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--text-muted) transparent;
   padding-right: 4px;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.collapsed ~ main .side-panel {
+  top: 68px;
+  max-height: calc(100vh - 88px);
 }
 
 .side-panel::-webkit-scrollbar {
@@ -1554,6 +1583,18 @@ resetBtn.onclick=showResetModal;
 
 initMajorSelector();
 loadMajorData(currentMajorId);
+
+// Collapsible header on scroll
+(function() {
+  const headerEl = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      headerEl.classList.add('collapsed');
+    } else {
+      headerEl.classList.remove('collapsed');
+    }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
