@@ -1226,6 +1226,11 @@ async function loadMajorData(majorId) {
     }));
   } catch (err) {
     console.error("Failed to load major JSON courses:", err);
+    if (window.location.protocol === 'file:') {
+      alert("【本地运行提示】\n由于浏览器的安全策略（CORS 限制），直接双击打开本地 HTML 文件（file:// 协议）时，浏览器会拦截对本地 JSON 文件的读取，导致课程无法显示。\n\n请使用本地 Web 服务器运行此项目（例如 VS Code 安装 Live Server 插件并点击 Go Live，或者在项目目录下运行命令行：npx serve 或 python -m http.server 启动本地服务后再访问）。\n\n此外，当您将项目部署（Push）到 GitHub Pages 后访问，将完全不受此限制影响。");
+    } else {
+      alert("加载课程数据失败，请检查网络或控制台错误：" + err.message);
+    }
   }
   
   // Initialize IDs
