@@ -1292,16 +1292,29 @@ function calcRules(){
    rule(r.name, sum(c => c.cat === '通识选修' && (c.group === r.name || c.name.includes(r.name))), r.target, r.notes)
  );
  
- let moduleSums={}; Object.keys(moduleTargets).forEach(m=>moduleSums[m]=sum(c=>c.group===m));
- let best=Object.entries(moduleSums).sort((a,b)=>b[1]-a[1])[0]||['未选择',0];
- let bestTarget=moduleTargets[best[0]]||7.5;
- let moduleOk=Object.entries(moduleSums).some(([m,v])=>v>=moduleTargets[m]);
+ const rulesList = [...base, ...geSubRules];
+ const ruleType = currentMajor.moduleRuleType || 'selectOne';
  
- return [
-   ...base,
-   ...geSubRules,
-   {name:'方向模块要求',done:best[1],target:bestTarget,ok:moduleOk,extra:`当前最高：${best[0]} ${fmt(best[1])} 学分`}
- ];
+ if (ruleType === 'allRequired') {
+   Object.entries(moduleTargets).forEach(([m, t]) => {
+     rulesList.push(rule(`${m}最低学分`, sum(c => c.group === m), t, '模块最低要求'));
+   });
+ } else {
+   let moduleSums={}; Object.keys(moduleTargets).forEach(m=>moduleSums[m]=sum(c=>c.group===m));
+   let best=Object.entries(moduleSums).sort((a,b)=>b[1]-a[1])[0]||['未选择',0];
+   let bestTarget=moduleTargets[best[0]]||7.5;
+   let moduleOk=Object.entries(moduleSums).some(([m,v])=>v>=moduleTargets[m]);
+   
+   rulesList.push({
+     name: '方向模块要求',
+     done: best[1],
+     target: bestTarget,
+     ok: moduleOk,
+     extra: `当前最高：${best[0]} ${fmt(best[1])} 学分`
+   });
+ }
+ 
+ return rulesList;
 }
 
 function renderRules(){

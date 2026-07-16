@@ -949,7 +949,8 @@ const MAJORS_DATABASE = {
         "required": false,
         "notes": "不高于/计入 2 学分"
       }
-    ]
+    ],
+    "moduleRuleType": "selectOne"
   },
   "se_2025": {
     "id": "se_2025",
@@ -1799,7 +1800,8 @@ const MAJORS_DATABASE = {
         "required": false,
         "notes": "不高于/计入 2 学分"
       }
-    ]
+    ],
+    "moduleRuleType": "selectOne"
   },
   "cs_edu_2025": {
     "id": "cs_edu_2025",
@@ -2805,7 +2807,8 @@ const MAJORS_DATABASE = {
         "required": false,
         "notes": "不高于/计入 2 学分"
       }
-    ]
+    ],
+    "moduleRuleType": "selectOne"
   },
   "ece_2025": {
     "id": "ece_2025",
@@ -3584,7 +3587,8 @@ const MAJORS_DATABASE = {
         "required": false,
         "notes": "不高于/计入 2 学分"
       }
-    ]
+    ],
+    "moduleRuleType": "selectOne"
   },
   "gis_2025": {
     "id": "gis_2025",
@@ -4426,6 +4430,7 @@ const MAJORS_DATABASE = {
         "required": false,
         "notes": "不高于/计入 2 学分"
       }
-    ]
+    ],
+    "moduleRuleType": "allRequired"
   }
 };
