@@ -74,23 +74,4 @@ course-selection/
 └── README.md                                # 项目开发与部署说明文档
 ```
 
----
 
-## ⚙️ 部署与日常推送说明
-
-本仓库的 Git 根目录已配置在 `course-selection/` 中，并已启用 GitHub Pages。
-
-### 1. 本地更新推送步骤
-当您在本地修改了 `2025级计算机选课.html` 网页后，请执行以下命令来同步推送到在线 GitHub Pages：
-```bash
-# 复制一份到 index.html
-Copy-Item -Path "2025级计算机选课.html" -Destination "index.html"
-
-# 提交并推送
-git add .
-git commit -m "更新选课页面逻辑与样式"
-git push origin main
-```
-
-### 2. 本地测试排除配置
-- 本地调试产生的 `temp/` 文件夹已被写入 `.gitignore` 中，您在本地可以任意放置调试产生的草稿，Git 会自动忽略，绝不会推送到公开 GitHub 仓库。
