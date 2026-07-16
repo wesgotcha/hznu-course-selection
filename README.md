@@ -61,17 +61,6 @@
 * **排版系统**：CSS Grid（三栏布局） + Flexbox 弹性流式排版，引入 Google Fonts（Inter & Outfit）提升文字品质。
 * **动态逻辑**：纯 JavaScript 实现，采用数据驱动渲染和声明式聚合计算。
 
----
 
-## 📂 项目结构
-
-```bash
-course-selection/
-├── index.html                               # 网站主页入口（Pages 部署目标）
-├── 2025级计算机选课.html                    # 原始中文命名主网页（与 index.html 100% 相同）
-├── 1402计算机科学与技术专业本科培养方案.pdf  # 官方专业本科培养方案 PDF 原始文件（供本地参考）
-├── .gitignore                               # 本地开发与云端隔离配置文件
-└── README.md                                # 项目开发与部署说明文档
-```
 
 
