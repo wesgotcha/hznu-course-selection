@@ -1132,12 +1132,38 @@ function initCourses() {
 }
 initCourses();
 
-// Apply theme on load
-const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-document.documentElement.className = savedTheme;
+// Apply theme on load and follow system changes
+const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const applyTheme = (theme) => {
+  document.documentElement.className = theme;
+};
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  applyTheme(savedTheme);
+} else {
+  applyTheme(darkQuery.matches ? 'dark' : 'light');
+}
+
+// Listen to OS theme changes
+try {
+  darkQuery.addEventListener('change', e => {
+    applyTheme(e.matches ? 'dark' : 'light');
+    localStorage.removeItem('theme'); // Reset override to follow system when user changes OS theme
+  });
+} catch (e1) {
+  try {
+    darkQuery.addListener(e => {
+      applyTheme(e.matches ? 'dark' : 'light');
+      localStorage.removeItem('theme');
+    });
+  } catch (e2) {}
+}
+
 document.getElementById('themeToggle').onclick = () => {
-  const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-  document.documentElement.className = nextTheme;
+  const isCurrentlyDark = document.documentElement.classList.contains('dark');
+  const nextTheme = isCurrentlyDark ? 'light' : 'dark';
+  applyTheme(nextTheme);
   localStorage.setItem('theme', nextTheme);
 };
 
