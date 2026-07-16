@@ -1,0 +1,802 @@
+[
+  {
+    "code": "601112101",
+    "name": "思想道德与法治",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一秋/一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601113101",
+    "name": "中国近现代史纲要",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一秋/一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601114101",
+    "name": "马克思主义基本原理",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "二秋/二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601115101",
+    "name": "毛泽东思想和中国特色社会主义理论体系概论",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "二秋/二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601116101",
+    "name": "习近平新时代中国特色社会主义思想概论",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "二秋/二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601117101",
+    "name": "形势与政策",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "一二三年级",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001001",
+    "name": "大学体育Ⅰ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001002",
+    "name": "大学体育Ⅱ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001003",
+    "name": "大学体育Ⅲ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001004",
+    "name": "大学体育Ⅳ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "761002311",
+    "name": "军事训练",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "761002312",
+    "name": "国防教育",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601118001",
+    "name": "国家安全教育",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "大学外语（基础拓展）",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "大学外语（进阶拓展）",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "大学外语（高阶课程）",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "二三年级",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "104000001",
+    "name": "大学生心理健康教育",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "761001401",
+    "name": "大学生职业发展与就业指导",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "二秋/三秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "通识选修：艺术鉴赏与审美体验",
+    "credits": 2,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "必修 2 学分"
+  },
+  {
+    "code": "",
+    "name": "通识选修：人工智能与现代生活",
+    "credits": 2,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "必修 2 学分"
+  },
+  {
+    "code": "",
+    "name": "通识选修：“四史教育”专题",
+    "credits": 1,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "必修 1 学分"
+  },
+  {
+    "code": "",
+    "name": "通识选修：其他通识课程",
+    "credits": 5,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "补足通识选修至 10 学分"
+  },
+  {
+    "code": "224414001",
+    "name": "地理信息科学导论",
+    "credits": 0.5,
+    "cat": "专业基础",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024902061",
+    "name": "高等数学 A1",
+    "credits": 5,
+    "cat": "专业基础",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024092062",
+    "name": "高等数学 A2",
+    "credits": 4,
+    "cat": "专业基础",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "22405D101",
+    "name": "C 程序设计",
+    "credits": 2.5,
+    "cat": "专业基础",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225D20101",
+    "name": "自然地理学",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224415101",
+    "name": "地理信息系统原理",
+    "credits": 2.5,
+    "cat": "专业核心",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225D19101",
+    "name": "数字测图原理与方法",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "02412D101",
+    "name": "地图学",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "025559001",
+    "name": "遥感概论",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224416101",
+    "name": "GIS 空间分析",
+    "credits": 2.5,
+    "cat": "专业核心",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224417101",
+    "name": "遥感地学分析",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "三秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024906111",
+    "name": "大学物理 C",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "一春",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "024903043",
+    "name": "线性代数 A3",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "",
+    "name": "★专业英语",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225703101",
+    "name": "数据结构",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225D24101",
+    "name": "数据库原理与应用",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "024906001",
+    "name": "概率与数理统计",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "224104101",
+    "name": "面向对象程序设计",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "02519D101",
+    "name": "计算机图形学",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225D23001",
+    "name": "科技写作",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "公共基础",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225639102",
+    "name": "开源 GIS",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "GIS",
+    "required": false,
+    "notes": "最低学分 6 学分"
+  },
+  {
+    "code": "225640101",
+    "name": "地理信息服务",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "GIS",
+    "required": false,
+    "notes": "最低学分 6 学分"
+  },
+  {
+    "code": "024D14001",
+    "name": "地理信息科学前沿",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "GIS",
+    "required": false,
+    "notes": "最低学分 6 学分"
+  },
+  {
+    "code": "225641102",
+    "name": "GIS 应用开发",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "GIS",
+    "required": false,
+    "notes": "最低学分 6 学分"
+  },
+  {
+    "code": "",
+    "name": "★遥感数字图像处理",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "遥感",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225695101",
+    "name": "激光雷达遥感导论",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "遥感",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225643001",
+    "name": "城市生态遥感",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "遥感",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225644101",
+    "name": "智慧生态与遥感产品真实性检验",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "遥感",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225694102",
+    "name": "水环境遥感",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "遥感",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "025D11101",
+    "name": "遥感程序设计",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "遥感",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225645102",
+    "name": "卫星导航定位技术应用",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "测绘",
+    "required": false,
+    "notes": "最低学分 5 学分"
+  },
+  {
+    "code": "225646102",
+    "name": "无人机低空遥感测绘",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "测绘",
+    "required": false,
+    "notes": "最低学分 5 学分"
+  },
+  {
+    "code": "225647102",
+    "name": "测绘项目管理与案例分析",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "测绘",
+    "required": false,
+    "notes": "最低学分 5 学分"
+  },
+  {
+    "code": "225D29101",
+    "name": "气象学与气候学",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "02510D101",
+    "name": "地貌与第四纪地质",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225696002",
+    "name": "人文地理学",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "024D16001",
+    "name": "中国地理",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225648001",
+    "name": "经济地理学",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225649001",
+    "name": "地理学理论与方法",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "02529D101",
+    "name": "城市规划",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "02537D101",
+    "name": "地理教学论",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "025D15101",
+    "name": "生态规划",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225650002",
+    "name": "全球变化与环境演变",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "地学",
+    "required": false,
+    "notes": "最低学分 8 学分"
+  },
+  {
+    "code": "225651102",
+    "name": "Python 程序设计",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "一春",
+    "group": "人工智能",
+    "required": false,
+    "notes": "最低学分 10 学分"
+  },
+  {
+    "code": "225652102",
+    "name": "遥感云平台基础与应用",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "人工智能",
+    "required": false,
+    "notes": "最低学分 10 学分"
+  },
+  {
+    "code": "225621102",
+    "name": "神经网络与深度学习",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "人工智能",
+    "required": false,
+    "notes": "最低学分 10 学分"
+  },
+  {
+    "code": "225653101",
+    "name": "空间大数据挖掘",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "人工智能",
+    "required": false,
+    "notes": "最低学分 10 学分"
+  },
+  {
+    "code": "225654102",
+    "name": "数字摄影测量与计算机视觉",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "人工智能",
+    "required": false,
+    "notes": "最低学分 10 学分"
+  },
+  {
+    "code": "225655102",
+    "name": "遥感影像智能信息提取",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "人工智能",
+    "required": false,
+    "notes": "最低学分 10 学分"
+  },
+  {
+    "code": "025D20201",
+    "name": "自然地理野外实训",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224420302",
+    "name": "科研实务（科学研究技能训练）",
+    "credits": 2,
+    "cat": "专业实践",
+    "term": "二秋-三春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224418302",
+    "name": "GIS 应用大赛实训",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224449302",
+    "name": "专业见习",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224419301",
+    "name": "遥感与 GIS 应用综合实践（创新创业教育）",
+    "credits": 2,
+    "cat": "专业实践",
+    "term": "三春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224450301",
+    "name": "专业实习",
+    "credits": 6,
+    "cat": "专业实践",
+    "term": "四秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024777301",
+    "name": "毕业论文",
+    "credits": 6,
+    "cat": "专业实践",
+    "term": "四春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "Ⅱ类学分：劳动教育类",
+    "credits": 2,
+    "cat": "Ⅱ类学分",
+    "term": "",
+    "group": "Ⅱ类",
+    "required": false,
+    "notes": "不少于 2 学分"
+  },
+  {
+    "code": "",
+    "name": "Ⅱ类学分：社会实践类",
+    "credits": 2,
+    "cat": "Ⅱ类学分",
+    "term": "",
+    "group": "Ⅱ类",
+    "required": false,
+    "notes": "不高于/计入 2 学分"
+  }
+]

@@ -975,6 +975,7 @@ button.danger:hover {
     max-height: none;
     margin-top: 0;
   }
+  .col-code { display: none; } /* Hide code on small screens */
 }
 
 @media (max-width: 640px) {
@@ -990,7 +991,7 @@ button.danger:hover {
   .card { box-shadow: none; border: 1px solid #ccc; background: #fff; }
 }
 </style>
-<script src="db.js"></script>
+<script src="database/db.js"></script>
 </head>
 <body>
 <header>
@@ -1015,7 +1016,7 @@ button.danger:hover {
         <div class="controls-row">
           <div class="search-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input id="q" type="search" placeholder="搜索课程名、建议学期……" />
+            <input id="q" type="search" placeholder="搜索课程名、代码、建议学期……" />
           </div>
           <select id="cat"><option value="">全部类别</option></select>
           <select id="term"><option value="">全部学期</option></select>
@@ -1040,6 +1041,7 @@ button.danger:hover {
           <thead>
             <tr>
               <th class="col-check" style="width: 40px;">达标</th>
+              <th class="col-code" style="width: 100px;">代码</th>
               <th class="col-name">课程</th>
               <th class="col-cat" style="width: 120px;">类别</th>
               <th class="col-credits" style="width: 60px;">学分</th>
@@ -1190,7 +1192,7 @@ let studyYears = {};
 let customCourses = [];
 let allCourses = [];
 
-function loadMajorData(majorId) {
+async function loadMajorData(majorId) {
   currentMajorId = majorId;
   currentMajor = MAJORS_DATABASE[majorId] || MAJORS_DATABASE[Object.keys(MAJORS_DATABASE)[0]];
   localStorage.setItem('currentMajorId', currentMajorId);
@@ -1207,9 +1209,24 @@ function loadMajorData(majorId) {
   studyYears = JSON.parse(localStorage.getItem(`courseStudyYears_${currentMajorId}`) || '{}');
   customCourses = JSON.parse(localStorage.getItem(`customCourses_${currentMajorId}`) || '[]');
   
-  // Parse and normalize courses
-  const baseCourses = JSON.parse(JSON.stringify(currentMajor.courses));
-  baseCourses.forEach(c => c.term = termMap[c.term] || c.term || '待安排');
+  let baseCourses = [];
+  try {
+    const res = await fetch(currentMajor.jsonPath);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    const data = await res.json();
+    baseCourses = data.map(c => ({
+      code: c.code || '',
+      name: c.name,
+      credits: parseFloat(c.credits),
+      cat: c.cat || '',
+      term: termMap[c.term] || c.term || '待安排',
+      group: c.group || '',
+      required: c.required || false,
+      notes: c.notes || ''
+    }));
+  } catch (err) {
+    console.error("Failed to load major JSON courses:", err);
+  }
   
   // Initialize IDs
   baseCourses.forEach((c, i) => c.id = c.name.replace(/\W/g, '') + '_' + i);
@@ -1306,7 +1323,7 @@ function renderFilters(){
 
 function renderTable(){
  const kw=q.value.trim().toLowerCase(), ca=cat.value, te=term.value;
- const rows=allCourses.filter(c=>(!ca||c.cat===ca)&&isCourseInTerm(c,te)&&(!kw||[c.name,c.cat,c.term,c.group,c.notes].join(' ').toLowerCase().includes(kw)));
+ const rows=allCourses.filter(c=>(!ca||c.cat===ca)&&isCourseInTerm(c,te)&&(!kw||[c.code,c.name,c.cat,c.term,c.group,c.notes].join(' ').toLowerCase().includes(kw)));
  const planTerms=['大一上','大一下','大二上','大二下','大三上','大三下','大四上','大四下'];
  
  tbody.innerHTML=rows.map(c=>`
@@ -1321,6 +1338,7 @@ function renderTable(){
         </span>
       </label>
     </td>
+    <td class="col-code">${c.code||'—'}</td>
     <td class="col-name">
       <div class="course-title-wrapper">
         <div class="course">${c.name}</div>
@@ -1548,6 +1566,7 @@ addCourseOkBtn.onclick = () => {
   const customId = 'custom_' + Date.now();
   const newCourse = {
     id: customId,
+    code: '',
     name: name,
     credits: credits,
     cat: '通识选修',

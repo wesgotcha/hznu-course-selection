@@ -1,0 +1,742 @@
+[
+  {
+    "code": "601112101",
+    "name": "思想道德与法治",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一秋/一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601113101",
+    "name": "中国近现代史纲要",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一秋/一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601114101",
+    "name": "马克思主义基本原理",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "二秋/二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601115101",
+    "name": "毛泽东思想和中国特色社会主义理论体系概论",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "二秋/二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601116101",
+    "name": "习近平新时代中国特色社会主义思想概论",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "二秋/二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601117101",
+    "name": "形势与政策",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "一二三年级",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001001",
+    "name": "大学体育Ⅰ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001002",
+    "name": "大学体育Ⅱ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001003",
+    "name": "大学体育Ⅲ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "061001004",
+    "name": "大学体育Ⅳ",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "761002311",
+    "name": "军事训练",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "761002312",
+    "name": "国防教育",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "601118001",
+    "name": "国家安全教育",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "大学外语（基础拓展）",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "大学外语（进阶拓展）",
+    "credits": 3,
+    "cat": "通识必修",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "大学外语（高阶课程）",
+    "credits": 2,
+    "cat": "通识必修",
+    "term": "二三年级",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "104000001",
+    "name": "大学生心理健康教育",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "761001401",
+    "name": "大学生职业发展与就业指导",
+    "credits": 1,
+    "cat": "通识必修",
+    "term": "二秋/三秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "通识选修：艺术鉴赏与审美体验",
+    "credits": 2,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "必修 2 学分"
+  },
+  {
+    "code": "",
+    "name": "通识选修：人工智能与现代生活",
+    "credits": 2,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "必修 2 学分"
+  },
+  {
+    "code": "",
+    "name": "通识选修：“四史教育”专题",
+    "credits": 1,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "必修 1 学分"
+  },
+  {
+    "code": "",
+    "name": "通识选修：其他通识课程",
+    "credits": 5,
+    "cat": "通识选修",
+    "term": "春秋滚动",
+    "group": "通识选修",
+    "required": false,
+    "notes": "补足通识选修至 10 学分"
+  },
+  {
+    "code": "024902061",
+    "name": "高等数学A1",
+    "credits": 5,
+    "cat": "专业基础",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024903063",
+    "name": "线性代数A3",
+    "credits": 3,
+    "cat": "专业基础",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024902062",
+    "name": "高等数学A2",
+    "credits": 4,
+    "cat": "专业基础",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2240001A1",
+    "name": "程序设计基础",
+    "credits": 4,
+    "cat": "专业基础",
+    "term": "一秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2241771A1",
+    "name": "电路原理",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2241521A1",
+    "name": "模拟电路",
+    "credits": 5,
+    "cat": "专业核心",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224036001",
+    "name": "信号与系统",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2241741A1",
+    "name": "数字电路",
+    "credits": 5,
+    "cat": "专业核心",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2241251A1",
+    "name": "传感与检测技术",
+    "credits": 2.5,
+    "cat": "专业核心",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224451101",
+    "name": "嵌入式系统原理与设计（人工智能）",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "三秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "024A11001",
+    "name": "大学物理B",
+    "credits": 4,
+    "cat": "专业限选",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225689001",
+    "name": "复变函数与积分变换",
+    "credits": 3,
+    "cat": "专业限选",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2241400A1",
+    "name": "电磁场与电磁波",
+    "credits": 3,
+    "cat": "专业限选",
+    "term": "三春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2251511A1",
+    "name": "可编程逻辑电路设计",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "集成电路工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251581A1",
+    "name": "嵌入式操作系统及应用",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "集成电路工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225697101",
+    "name": "集成电路分析与设计(AI 芯片)",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "集成电路工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225698102",
+    "name": "无线传感器网络与边缘智能",
+    "credits": 3.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "集成电路工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251771A1",
+    "name": "数字信号处理",
+    "credits": 3.5,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "通信工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225148001",
+    "name": "通信系统原理",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "通信工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251721A1",
+    "name": "数据通信与网络技术",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "通信工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251321A1",
+    "name": "高频电路",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "通信工程",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2240000A1",
+    "name": "工程制图与 CAD",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "一春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251161A1",
+    "name": "Matlab 程序设计",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251681B1",
+    "name": "数据结构",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "二秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225690201",
+    "name": "程序设计基础项目实践",
+    "credits": 1,
+    "cat": "主修专业选修",
+    "term": "一春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251281A1",
+    "name": "电子线路 CAD",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251271A1",
+    "name": "单片微机系统原理",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251121A1",
+    "name": "C++程序设计",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251181A1",
+    "name": "RFID 射频识别技术",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225656101",
+    "name": "Python 程序设计与 AI 实践",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225083001",
+    "name": "自动控制原理",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225657001",
+    "name": "人工智能的数学基础",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225018001",
+    "name": "职业规划与素养",
+    "credits": 1,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225658102",
+    "name": "微型人工智能与嵌入式应用",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225659102",
+    "name": "智能控制与机器人技术",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225660102",
+    "name": "智能传感与分布式计算技术",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251761A1",
+    "name": "数字图像处理",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "045226001",
+    "name": "信息理论与编码",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "224421302",
+    "name": "电子竞赛编程实践",
+    "credits": 2,
+    "cat": "专业实践",
+    "term": "一春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224445302",
+    "name": "AI 时代的专业劳动教育",
+    "credits": 2,
+    "cat": "专业实践",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224452202",
+    "name": "智能电子系统设计与创新",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224424302",
+    "name": "电子系统全栈开发实践",
+    "credits": 1.5,
+    "cat": "专业实践",
+    "term": "三春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224423302",
+    "name": "科研实务",
+    "credits": 2,
+    "cat": "专业实践",
+    "term": "三春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225199311",
+    "name": "智能机器人系统-基础实践",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225199322",
+    "name": "智能机器人系统-控制实践",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "二春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225199331",
+    "name": "智能机器人系统-通信实践",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "三秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "225199342",
+    "name": "智能机器人系统-综合实践",
+    "credits": 1,
+    "cat": "专业实践",
+    "term": "三春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224196301",
+    "name": "专业见习",
+    "credits": 2,
+    "cat": "专业实践",
+    "term": "四春/秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224092301",
+    "name": "专业实习",
+    "credits": 8,
+    "cat": "专业实践",
+    "term": "四春/秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "224453302",
+    "name": "毕业论文（设计）",
+    "credits": 8,
+    "cat": "专业实践",
+    "term": "四春/秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "",
+    "name": "Ⅱ类学分：劳动教育类",
+    "credits": 2,
+    "cat": "Ⅱ类学分",
+    "term": "",
+    "group": "Ⅱ类",
+    "required": false,
+    "notes": "不少于 2 学分"
+  },
+  {
+    "code": "",
+    "name": "Ⅱ类学分：社会实践类",
+    "credits": 2,
+    "cat": "Ⅱ类学分",
+    "term": "",
+    "group": "Ⅱ类",
+    "required": false,
+    "notes": "不高于/计入 2 学分"
+  }
+]
