@@ -100,6 +100,16 @@
     "notes": ""
   },
   {
+    "code": "061003001",
+    "name": "国家学生体质健康标准测试",
+    "credits": 0.0,
+    "cat": "通识必修",
+    "term": "四春",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
     "code": "761002311",
     "name": "军事训练",
     "credits": 2,
@@ -207,7 +217,7 @@
     "term": "春秋滚动",
     "group": "通识选修",
     "required": false,
-    "notes": "必修 1 学分"
+    "notes": "4 选 1，1 学分"
   },
   {
     "code": "",
@@ -231,7 +241,7 @@
   },
   {
     "code": "024902061",
-    "name": "高等数学A1",
+    "name": "高等数学 A1",
     "credits": 5,
     "cat": "专业基础",
     "term": "一秋",
@@ -241,7 +251,7 @@
   },
   {
     "code": "024903063",
-    "name": "线性代数A3",
+    "name": "线性代数 A3",
     "credits": 3,
     "cat": "专业基础",
     "term": "一秋",
@@ -261,7 +271,7 @@
   },
   {
     "code": "024902062",
-    "name": "高等数学A2",
+    "name": "高等数学 A2",
     "credits": 4,
     "cat": "专业基础",
     "term": "一春",
@@ -280,11 +290,31 @@
     "notes": ""
   },
   {
+    "code": "2241411A1",
+    "name": "计算机网络",
+    "credits": 3,
+    "cat": "专业核心",
+    "term": "三秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
     "code": "224428101",
-    "name": "数据结构",
+    "name": "★数据结构",
     "credits": 3,
     "cat": "专业核心",
     "term": "二秋",
+    "group": "",
+    "required": true,
+    "notes": ""
+  },
+  {
+    "code": "2241241A1",
+    "name": "★操作系统",
+    "credits": 3.5,
+    "cat": "专业核心",
+    "term": "二春",
     "group": "",
     "required": true,
     "notes": ""
@@ -295,26 +325,6 @@
     "credits": 3,
     "cat": "专业核心",
     "term": "二秋",
-    "group": "",
-    "required": true,
-    "notes": ""
-  },
-  {
-    "code": "2241241A1",
-    "name": "操作系统",
-    "credits": 3.5,
-    "cat": "专业核心",
-    "term": "二春",
-    "group": "",
-    "required": true,
-    "notes": ""
-  },
-  {
-    "code": "2241411A1",
-    "name": "计算机网络",
-    "credits": 3,
-    "cat": "专业核心",
-    "term": "三秋",
     "group": "",
     "required": true,
     "notes": ""
@@ -421,7 +431,7 @@
   },
   {
     "code": "2251171A1",
-    "name": "Python 程序设计",
+    "name": "Python程序设计",
     "credits": 3,
     "cat": "专业限选",
     "term": "一春",
@@ -471,7 +481,7 @@
   },
   {
     "code": "225680102",
-    "name": "Web 应用开发",
+    "name": "Web应用开发",
     "credits": 3,
     "cat": "主修专业选修",
     "term": "二春",
@@ -511,20 +521,20 @@
   },
   {
     "code": "2251951A1",
-    "name": "Java 程序设计",
+    "name": "Java程序设计",
     "credits": 3,
     "cat": "主修专业选修",
-    "term": "一春",
+    "term": "二秋",
     "group": "高级软件技术模块",
     "required": false,
     "notes": ""
   },
   {
     "code": "225620102",
-    "name": "UI 与交互设计",
+    "name": "UI与交互设计",
     "credits": 3,
     "cat": "主修专业选修",
-    "term": "二春",
+    "term": "二春/三秋",
     "group": "数字媒体技术模块",
     "required": false,
     "notes": ""
@@ -550,16 +560,6 @@
     "notes": ""
   },
   {
-    "code": "225197101",
-    "name": "数字图像处理",
-    "credits": 3,
-    "cat": "主修专业选修",
-    "term": "二春",
-    "group": "数字媒体技术模块",
-    "required": false,
-    "notes": ""
-  },
-  {
     "code": "225693101",
     "name": "三维动画设计与制作",
     "credits": 3,
@@ -570,11 +570,71 @@
     "notes": ""
   },
   {
+    "code": "225197101",
+    "name": "数字图像处理",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "数字媒体技术模块",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225670101",
+    "name": "信息安全竞赛",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "一秋",
+    "group": "信息安全模块",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "2251791A1",
+    "name": "网络安全",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "信息安全模块",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225066301",
+    "name": "信息安全工程",
+    "credits": 1,
+    "cat": "主修专业选修",
+    "term": "三春",
+    "group": "信息安全模块",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225671002",
+    "name": "应用密码学",
+    "credits": 3,
+    "cat": "主修专业选修",
+    "term": "二春",
+    "group": "信息安全模块",
+    "required": false,
+    "notes": ""
+  },
+  {
+    "code": "225672101",
+    "name": "安全协议及应用",
+    "credits": 2.5,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "信息安全模块",
+    "required": false,
+    "notes": ""
+  },
+  {
     "code": "024906001",
     "name": "概率与数理统计",
     "credits": 3,
     "cat": "主修专业选修",
-    "term": "二春",
+    "term": "二秋",
     "group": "专业任选课",
     "required": false,
     "notes": ""
@@ -584,7 +644,7 @@
     "name": "C++程序设计",
     "credits": 3,
     "cat": "主修专业选修",
-    "term": "二春",
+    "term": "一春",
     "group": "专业任选课",
     "required": false,
     "notes": ""
@@ -602,7 +662,7 @@
   {
     "code": "2251391A1",
     "name": "计算机辅助教学",
-    "credits": 2,
+    "credits": 2.5,
     "cat": "主修专业选修",
     "term": "二春",
     "group": "专业任选课",
@@ -611,10 +671,10 @@
   },
   {
     "code": "2251151A1",
-    "name": "Linux 程序设计",
+    "name": "Linux程序设计",
     "credits": 1.5,
     "cat": "主修专业选修",
-    "term": "三秋",
+    "term": "二春",
     "group": "专业任选课",
     "required": false,
     "notes": ""
@@ -634,7 +694,7 @@
     "name": "人机交互与虚拟现实",
     "credits": 2.5,
     "cat": "主修专业选修",
-    "term": "三春",
+    "term": "三秋",
     "group": "专业任选课",
     "required": false,
     "notes": ""
@@ -650,31 +710,11 @@
     "notes": ""
   },
   {
-    "code": "2251791A1",
-    "name": "网络安全",
+    "code": "2254003A1",
+    "name": "◆信息学竞赛",
     "credits": 2,
-    "cat": "主修专业选修",
-    "term": "三秋",
-    "group": "专业任选课",
-    "required": false,
-    "notes": ""
-  },
-  {
-    "code": "225686202",
-    "name": "网络工程",
-    "credits": 1.5,
     "cat": "主修专业选修",
     "term": "三春",
-    "group": "专业任选课",
-    "required": false,
-    "notes": ""
-  },
-  {
-    "code": "2254003A1",
-    "name": "信息学竞赛",
-    "credits": 2,
-    "cat": "主修专业选修",
-    "term": "二秋",
     "group": "专业任选课",
     "required": false,
     "notes": ""
@@ -684,55 +724,25 @@
     "name": "物联网概论",
     "credits": 2,
     "cat": "主修专业选修",
-    "term": "二秋",
+    "term": "三春",
     "group": "专业任选课",
     "required": false,
     "notes": ""
   },
   {
-    "code": "225674001",
-    "name": "高级数据结构",
-    "credits": 2,
-    "cat": "主修专业选修",
-    "term": "三秋",
-    "group": "专业任选课",
-    "required": false,
-    "notes": ""
-  },
-  {
-    "code": "225671002",
-    "name": "应用密码学",
+    "code": "225663102",
+    "name": "软件工程",
     "credits": 3,
     "cat": "主修专业选修",
-    "term": "二春",
+    "term": "三春",
     "group": "专业任选课",
     "required": false,
     "notes": ""
   },
   {
-    "code": "225672101",
-    "name": "安全协议及应用",
-    "credits": 2.5,
-    "cat": "主修专业选修",
-    "term": "三秋",
-    "group": "专业任选课",
-    "required": false,
-    "notes": ""
-  },
-  {
-    "code": "225670101",
-    "name": "信息安全竞赛",
-    "credits": 2,
-    "cat": "主修专业选修",
-    "term": "三秋",
-    "group": "专业任选课",
-    "required": false,
-    "notes": ""
-  },
-  {
-    "code": "225066301",
-    "name": "信息安全工程",
-    "credits": 1,
+    "code": "225686202",
+    "name": "网络工程",
+    "credits": 1.5,
     "cat": "主修专业选修",
     "term": "三春",
     "group": "专业任选课",
@@ -760,6 +770,16 @@
     "notes": ""
   },
   {
+    "code": "225674001",
+    "name": "高级数据结构",
+    "credits": 2,
+    "cat": "主修专业选修",
+    "term": "三秋",
+    "group": "专业任选课",
+    "required": false,
+    "notes": ""
+  },
+  {
     "code": "104106001",
     "name": "教育研究方法",
     "credits": 2,
@@ -774,7 +794,7 @@
     "name": "教师成长案例研究",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -784,7 +804,7 @@
     "name": "教学智慧和教学艺术",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -794,7 +814,7 @@
     "name": "中学生学习和发展心理专题",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -804,7 +824,7 @@
     "name": "学生品德发展与道德教育",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -814,7 +834,7 @@
     "name": "学生问题诊断与矫正",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -824,7 +844,7 @@
     "name": "中学生职业生涯规划",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -844,7 +864,7 @@
     "name": "中外教育史专题",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -854,7 +874,7 @@
     "name": "国际教育改革动态",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -864,7 +884,7 @@
     "name": "学校教育法律问题案例研究",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -874,7 +894,7 @@
     "name": "校本课程开发",
     "credits": 1,
     "cat": "教育选修",
-    "term": "春、秋",
+    "term": "春秋滚动",
     "group": "教师教育类",
     "required": false,
     "notes": ""
@@ -944,7 +964,7 @@
     "name": "毕业论文（设计）",
     "credits": 8,
     "cat": "专业实践",
-    "term": "四春或秋",
+    "term": "四春/秋",
     "group": "",
     "required": true,
     "notes": ""

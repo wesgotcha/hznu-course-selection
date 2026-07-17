@@ -1,2 +1,4 @@
 temp/
 .idea/
+course-selection.code-workspace
+tool/__pycache__/
