@@ -435,6 +435,65 @@ button.danger:hover {
   background: rgba(16, 185, 129, 0.06);
 }
 
+/* Group Collapsible Headers */
+.group-header-row {
+  cursor: pointer;
+}
+
+.group-header-row td {
+  padding: 8px 12px !important;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  text-align: left !important;
+}
+
+.group-header-row:hover td {
+  background: var(--soft);
+}
+
+.group-header-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.group-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.group-toggle-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.group-toggle-icon.collapsed {
+  transform: rotate(-90deg);
+}
+
+.group-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+}
+
+.group-stats {
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-main);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-left: auto;
+}
+
 .course-title-wrapper {
   display: inline-flex;
   align-items: center;
@@ -1205,6 +1264,18 @@ let checked = new Set();
 let studyYears = {};
 let customCourses = [];
 let allCourses = [];
+let groupOrder = [];
+let collapsedGroups = new Set();
+
+function getCourseGroup(c) {
+  if (c.cat === '通识选修' && c.group) {
+    return `通识选修：${c.group}`;
+  }
+  if (c.cat === '主修专业选修' && c.group) {
+    return `主修专业选修：${c.group}`;
+  }
+  return c.cat;
+}
 
 
 function migrateId(oldId, courses) {
@@ -1307,6 +1378,18 @@ async function loadMajorData(majorId) {
   localStorage.setItem(`courseChecks_${currentMajorId}`, JSON.stringify([...checked]));
   localStorage.setItem(`courseStudyYears_${currentMajorId}`, JSON.stringify(studyYears));
   
+  // Pre-calculate group order to keep consistent rendering order
+  groupOrder = [];
+  allCourses.forEach(c => {
+    const g = getCourseGroup(c);
+    if (!groupOrder.includes(g)) {
+      groupOrder.push(g);
+    }
+  });
+
+  // Load collapsed groups state
+  collapsedGroups = new Set(JSON.parse(localStorage.getItem(`collapsedGroups_${currentMajorId}`) || '[]'));
+  
   // Reset search filters
   q.value = '';
   cat.value = '';
@@ -1387,58 +1470,166 @@ function sum(filter){return allCourses.filter(c=>checked.has(c.id)&&filter(c)).r
 function fmt(n){return Number.isInteger(n)?String(n):n.toFixed(1)}
 
 function renderFilters(){
- const cats=[...new Set(allCourses.map(c=>c.cat))];
- cat.innerHTML='<option value="">全部类别</option>'+cats.map(x=>`<option>${x}</option>`).join('');
- 
- const planTerms = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'];
- term.innerHTML='<option value="">全部学期</option>'+planTerms.map(x=>`<option>${x}</option>`).join('');
+  const html = ['<option value="">全部类别</option>'];
+  
+  // Predefined main categories in logical order
+  const mainCats = ['通识必修', '专业基础', '专业核心', '专业限选', '专业实践', 'Ⅱ类学分', '教育选修'];
+  
+  // Render main categories that exist in the course list
+  mainCats.forEach(c => {
+    if (allCourses.some(course => course.cat === c)) {
+      html.push(`<option value="${c}">${c}</option>`);
+    }
+  });
+  
+  // Render General Education Electives (通识选修) with its sub-groups
+  if (allCourses.some(course => course.cat === '通识选修')) {
+    const geGroups = [...new Set(allCourses.filter(course => course.cat === '通识选修' && course.group).map(course => course.group))];
+    if (geGroups.length > 0) {
+      html.push(`<optgroup label="通识选修">`);
+      html.push(`<option value="通识选修">通识选修 - 全部</option>`);
+      geGroups.forEach(g => {
+        html.push(`<option value="通识选修:${g}">通识选修：${g}</option>`);
+      });
+      html.push(`</optgroup>`);
+    } else {
+      html.push(`<option value="通识选修">通识选修</option>`);
+    }
+  }
+  
+  // Render Major Electives (主修专业选修) with its sub-groups
+  if (allCourses.some(course => course.cat === '主修专业选修')) {
+    const majorGroups = [...new Set(allCourses.filter(course => course.cat === '主修专业选修' && course.group).map(course => course.group))];
+    if (majorGroups.length > 0) {
+      html.push(`<optgroup label="主修专业选修">`);
+      html.push(`<option value="主修专业选修">主修专业选修 - 全部</option>`);
+      majorGroups.forEach(g => {
+        html.push(`<option value="主修专业选修:${g}">主修专业选修：${g}</option>`);
+      });
+      html.push(`</optgroup>`);
+    } else {
+      html.push(`<option value="主修专业选修">主修专业选修</option>`);
+    }
+  }
+  
+  cat.innerHTML = html.join('');
+  
+  const planTerms = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'];
+  term.innerHTML = '<option value="">全部学期</option>' + planTerms.map(x => `<option>${x}</option>`).join('');
 }
 
 function renderTable(){
- const kw=q.value.trim().toLowerCase(), ca=cat.value, te=term.value;
- const rows=allCourses.filter(c=>(!ca||c.cat===ca)&&isCourseInTerm(c,te)&&(!kw||[c.code,c.name,c.cat,c.term,c.group,c.notes].join(' ').toLowerCase().includes(kw)));
- const planTerms=['大一上','大一下','大二上','大二下','大三上','大三下','大四上','大四下'];
- 
- tbody.innerHTML=rows.map(c=>`
-  <tr class="${checked.has(c.id)?'done':''}">
-    <td class="col-check">
-      <label class="custom-checkbox-container" aria-label="选择 ${c.name}">
-        <input class="check" type="checkbox" ${checked.has(c.id)?'checked':''} onchange="toggle('${c.id}')">
-        <span class="checkmark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </span>
-      </label>
-    </td>
-    <td class="col-code">${c.code||'—'}</td>
-    <td class="col-name">
-      <div class="course-title-wrapper">
-        <div class="course">${c.name}</div>
-        ${c.isCustom ? `
-          <button class="delete-custom-btn" onclick="deleteCustomCourse('${c.id}', event)" title="删除此自定义课程">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
-          </button>
-        ` : ''}
-        ${(c.cat === '通识选修' && !c.isCustom) ? `
-          <button class="add-placeholder-btn" onclick="openAddModalWithGroup('${c.name.replace('通识选修：', '')}', event)" title="快速添加此类型通识课">
-            + 添加
-          </button>
-        ` : ''}
-      </div>
-      <div class="meta">${c.isCustom ? '类型：' + c.group : (c.group ? c.group + ' · ' : '') + (c.notes || '')}</div>
-    </td>
-    <td class="col-cat"><span class="tag">${c.cat}</span></td>
-    <td class="col-credits credit">${fmt(c.credits)}</td>
-    <td class="col-term"><span class="tag">${c.term}</span></td>
-    <td class="col-plan">
-      <select class="study-year" aria-label="${c.name}计划修读学期" onchange="setStudyYear('${c.id}',this.value)">
-        <option value="">未标记</option>
-        ${planTerms.map(y=>`<option ${studyYears[c.id]===y?'selected':''}>${y}</option>`).join('')}
-      </select>
-    </td>
-  </tr>
- `).join('');
+  const kw = q.value.trim().toLowerCase(), ca = cat.value, te = term.value;
+  
+  // Parse ca filter which might contain a subcategory in "CatName:GroupName" format
+  let matchCat = ca;
+  let matchGroup = "";
+  if (ca && ca.includes(':')) {
+    const parts = ca.split(':');
+    matchCat = parts[0];
+    matchGroup = parts[1];
+  }
+  
+  // Filter courses
+  const rows = allCourses.filter(c => {
+    if (matchCat && c.cat !== matchCat) return false;
+    if (matchGroup && c.group !== matchGroup) return false;
+    if (!isCourseInTerm(c, te)) return false;
+    if (kw && ![c.code, c.name, c.cat, c.term, c.group, c.notes].join(' ').toLowerCase().includes(kw)) return false;
+    return true;
+  });
+  
+  const planTerms = ['大一上', '大一下', '大二上', '大二下', '大三上', '大三下', '大四上', '大四下'];
+  
+  // Group the filtered rows by getCourseGroup
+  const groupedRows = {};
+  rows.forEach(c => {
+    const g = getCourseGroup(c);
+    if (!groupedRows[g]) groupedRows[g] = [];
+    groupedRows[g].push(c);
+  });
+  
+  // Keep the groups in order based on curriculum appearance
+  const activeGroups = groupOrder.filter(g => groupedRows[g] && groupedRows[g].length > 0);
+  
+  let html = [];
+  activeGroups.forEach(g => {
+    const isCollapsed = collapsedGroups.has(g);
+    const groupChecked = groupedRows[g].filter(c => checked.has(c.id)).reduce((sum, c) => sum + c.credits, 0);
+    
+    html.push(`
+      <tr class="group-header-row" onclick="toggleGroupCollapse('${g}', event)">
+        <td colspan="7">
+          <div class="group-header-content">
+            <span class="group-toggle-icon ${isCollapsed ? 'collapsed' : ''}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+            <span class="group-title">${g}</span>
+            <span class="group-stats">已选 ${fmt(groupChecked)} 学分 / 共 ${groupedRows[g].length} 门课</span>
+          </div>
+        </td>
+      </tr>
+    `);
+    
+    if (!isCollapsed) {
+      groupedRows[g].forEach(c => {
+        html.push(`
+          <tr class="${checked.has(c.id)?'done':''}">
+            <td class="col-check">
+              <label class="custom-checkbox-container" aria-label="选择 ${c.name}">
+                <input class="check" type="checkbox" ${checked.has(c.id)?'checked':''} onchange="toggle('${c.id}')">
+                <span class="checkmark">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+              </label>
+            </td>
+            <td class="col-code">${c.code||'—'}</td>
+            <td class="col-name">
+              <div class="course-title-wrapper">
+                <div class="course">${c.name}</div>
+                ${c.isCustom ? `
+                  <button class="delete-custom-btn" onclick="deleteCustomCourse('${c.id}', event)" title="删除此自定义课程">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                  </button>
+                ` : ''}
+                ${(c.cat === '通识选修' && !c.isCustom) ? `
+                  <button class="add-placeholder-btn" onclick="openAddModalWithGroup('${c.name.replace('通识选修：', '')}', event)" title="快速添加此类型通识课">
+                    + 添加
+                  </button>
+                ` : ''}
+              </div>
+              <div class="meta">${c.isCustom ? '类型：' + c.group : (c.group ? c.group + ' · ' : '') + (c.notes || '')}</div>
+            </td>
+            <td class="col-cat"><span class="tag">${c.cat}</span></td>
+            <td class="col-credits credit">${fmt(c.credits)}</td>
+            <td class="col-term"><span class="tag">${c.term}</span></td>
+            <td class="col-plan">
+              <select class="study-year" aria-label="${c.name}计划修读学期" onchange="setStudyYear('${c.id}',this.value)">
+                <option value="">未标记</option>
+                ${planTerms.map(y=>`<option ${studyYears[c.id]===y?'selected':''}>${y}</option>`).join('')}
+              </select>
+            </td>
+          </tr>
+        `);
+      });
+    }
+  });
+  
+  tbody.innerHTML = html.join('');
+}
+
+function toggleGroupCollapse(g, event) {
+  if (collapsedGroups.has(g)) {
+    collapsedGroups.delete(g);
+  } else {
+    collapsedGroups.add(g);
+  }
+  localStorage.setItem(`collapsedGroups_${currentMajorId}`, JSON.stringify([...collapsedGroups]));
+  renderTable();
 }
 
 function rule(name,done,target,extra=''){let ok=done>=target-1e-9;return {name,done,target,ok,extra}}
