@@ -226,6 +226,10 @@ header.collapsed {
   align-items: start;
 }
 
+.sidebar-container {
+  display: contents;
+}
+
 .course-panel {
   min-width: 0;
 }
@@ -1015,16 +1019,45 @@ button.danger:hover {
     grid-template-columns: minmax(0, 1fr) 340px;
   }
   .course-panel {
-    grid-row: span 2;
+    grid-row: auto;
   }
-  .side-panel-left {
+  .sidebar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     grid-column: 2;
     grid-row: 1;
+    position: sticky;
+    top: 86px;
+    max-height: calc(100vh - 106px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-muted) transparent;
+    padding-right: 4px;
+    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1), max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .side-panel-right {
-    grid-column: 2;
-    grid-row: 2;
-    margin-top: 20px;
+  header.collapsed ~ main .sidebar-container {
+    top: 20px;
+    max-height: calc(100vh - 40px);
+  }
+  .sidebar-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 99px;
+  }
+  .sidebar-container .side-panel {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+  .sidebar-container .side-panel-left,
+  .sidebar-container .side-panel-right {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
   }
 }
 
@@ -1032,20 +1065,26 @@ button.danger:hover {
   .layout {
     grid-template-columns: 1fr;
   }
-  .course-panel {
-    grid-row: auto;
-  }
-  .side-panel-left {
+  .sidebar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     grid-column: 1;
     grid-row: auto;
     position: static;
     max-height: none;
+    overflow-y: visible;
   }
-  .side-panel-right {
-    grid-column: 1;
-    grid-row: auto;
+  .sidebar-container .side-panel {
     position: static;
     max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+  .sidebar-container .side-panel-left,
+  .sidebar-container .side-panel-right {
+    grid-column: auto;
+    grid-row: auto;
     margin-top: 0;
   }
   .col-code { display: none; } /* Hide code on small screens */
@@ -1128,67 +1167,70 @@ button.danger:hover {
     </section>
   </div>
 
-  <!-- 第二栏：指标看板与培养方案规则 -->
-  <aside class="side-panel side-panel-left">
-    <!-- 选课看板 KPI卡片与学期汇总 (可折叠) -->
-    <section class="card fold-block is-open">
-      <button type="button" class="fold-trigger" onclick="toggleFold(this)">
-        <span class="side-title">选课看板 <span class="pill pass" style="margin-left:6px;">实时</span></span>
-        <span class="fold-arrow" aria-hidden="true"></span>
-      </button>
-      <div class="fold-body">
-        <div>
-          <div class="side-kpi-grid">
-            <div class="side-kpi kpi-total">
-              <div class="kpi"><span id="totalDone">0</span>/<span id="totalRequirementLabel">151</span></div>
-              <div class="label">总学分进度</div>
-              <div class="bar"><i id="totalBar"></i></div>
+  <!-- 右边栏容器 -->
+  <div class="sidebar-container">
+    <!-- 第二栏：指标看板与培养方案规则 -->
+    <aside class="side-panel side-panel-left">
+      <!-- 选课看板 KPI卡片与学期汇总 (可折叠) -->
+      <section class="card fold-block is-open">
+        <button type="button" class="fold-trigger" onclick="toggleFold(this)">
+          <span class="side-title">选课看板 <span class="pill pass" style="margin-left:6px;">实时</span></span>
+          <span class="fold-arrow" aria-hidden="true"></span>
+        </button>
+        <div class="fold-body">
+          <div>
+            <div class="side-kpi-grid">
+              <div class="side-kpi kpi-total">
+                <div class="kpi"><span id="totalDone">0</span>/<span id="totalRequirementLabel">151</span></div>
+                <div class="label">总学分进度</div>
+                <div class="bar"><i id="totalBar"></i></div>
+              </div>
+              <div class="side-kpi kpi-rules">
+                <div class="kpi" id="passCount">0/8</div>
+                <div class="label">规则达标数</div>
+                <div class="bar"><i id="ruleBar"></i></div>
+              </div>
+              <div class="side-kpi kpi-left">
+                <div class="kpi" id="leftCredits">151</div>
+                <div class="label">距离最低毕业学分还差</div>
+                <div class="bar"><i id="leftBar"></i></div>
+              </div>
+              <div class="side-kpi kpi-checked">
+                <div class="kpi" id="checkedCount">0</div>
+                <div class="label">已勾选课程/项目</div>
+                <div class="bar"><i id="checkedBar"></i></div>
+              </div>
             </div>
-            <div class="side-kpi kpi-rules">
-              <div class="kpi" id="passCount">0/8</div>
-              <div class="label">规则达标数</div>
-              <div class="bar"><i id="ruleBar"></i></div>
-            </div>
-            <div class="side-kpi kpi-left">
-              <div class="kpi" id="leftCredits">151</div>
-              <div class="label">距离最低毕业学分还差</div>
-              <div class="bar"><i id="leftBar"></i></div>
-            </div>
-            <div class="side-kpi kpi-checked">
-              <div class="kpi" id="checkedCount">0</div>
-              <div class="label">已勾选课程/项目</div>
-              <div class="bar"><i id="checkedBar"></i></div>
-            </div>
+            <div class="term-summary" id="termSummary"></div>
           </div>
-          <div class="term-summary" id="termSummary"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 培养方案达标情况 (可折叠) -->
-    <section class="card fold-block is-open">
-      <button type="button" class="fold-trigger" onclick="toggleFold(this)">
-        <span class="side-title">培养方案达标情况</span>
-        <span class="fold-arrow" aria-hidden="true"></span>
-      </button>
-      <div class="fold-body">
-        <div class="side-rules" id="rules"></div>
-      </div>
-    </section>
-  </aside>
+      <!-- 培养方案达标情况 (可折叠) -->
+      <section class="card fold-block is-open">
+        <button type="button" class="fold-trigger" onclick="toggleFold(this)">
+          <span class="side-title">培养方案达标情况</span>
+          <span class="fold-arrow" aria-hidden="true"></span>
+        </button>
+        <div class="fold-body">
+          <div class="side-rules" id="rules"></div>
+        </div>
+      </section>
+    </aside>
 
-  <!-- 第三栏：已选课程清单 -->
-  <aside class="side-panel side-panel-right">
-    <section class="card fold-block is-open">
-      <button type="button" class="fold-trigger" onclick="toggleFold(this)">
-        <span class="side-title">已选课程（<span id="sideCount">0</span>门）</span>
-        <span class="fold-arrow" aria-hidden="true"></span>
-      </button>
-      <div class="fold-body">
-        <div class="selection-list" id="selectionList"></div>
-      </div>
-    </section>
-  </aside>
+    <!-- 第三栏：已选课程清单 -->
+    <aside class="side-panel side-panel-right">
+      <section class="card fold-block is-open">
+        <button type="button" class="fold-trigger" onclick="toggleFold(this)">
+          <span class="side-title">已选课程（<span id="sideCount">0</span>门）</span>
+          <span class="fold-arrow" aria-hidden="true"></span>
+        </button>
+        <div class="fold-body">
+          <div class="selection-list" id="selectionList"></div>
+        </div>
+      </section>
+    </aside>
+  </div>
 </section>
 
 <!-- 自定义模态对话框 (替换 confirm) -->
