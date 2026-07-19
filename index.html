@@ -1291,25 +1291,74 @@ button.danger:hover {
   </div>
 </div>
 
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
-  // 本地开发环境（Live Server/本地文件）下的不蒜子数据 Mock 预览
-  if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') {
-    setTimeout(() => {
-      const pvContainer = document.getElementById('busuanzi_container_site_pv');
-      const uvContainer = document.getElementById('busuanzi_container_site_uv');
-      const pvValue = document.getElementById('busuanzi_value_site_pv');
-      const uvValue = document.getElementById('busuanzi_value_site_uv');
-      if (pvContainer && pvValue) {
-        pvValue.textContent = '999';
-        pvContainer.style.display = 'inline';
+  (async () => {
+    // 网站唯一的虚拟识别 URL，确保本项目的访问统计与其他项目隔离（不共享 wesgotcha.github.io 域名的总体计数）
+    const targetUrl = "https://wesgotcha-hznu-course-selection.github.io/";
+    const apiEndpoint = "https://events.vercount.one/api/v2/log";
+    
+    // 1. 本地开发环境 Mock 数据预览
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') {
+      setTimeout(() => {
+        const pvContainer = document.getElementById('busuanzi_container_site_pv');
+        const uvContainer = document.getElementById('busuanzi_container_site_uv');
+        const pvValue = document.getElementById('busuanzi_value_site_pv');
+        const uvValue = document.getElementById('busuanzi_value_site_uv');
+        if (pvContainer && pvValue) {
+          pvValue.textContent = '999';
+          pvContainer.style.display = 'inline';
+        }
+        if (uvContainer && uvValue) {
+          uvValue.textContent = '888';
+          uvContainer.style.display = 'inline';
+        }
+      }, 300);
+      return;
+    }
+
+    // 2. 线上环境：通过 Cookie 检测判断是否为新 UV 访客
+    const cookieName = "vercount_uv_wesgotcha_hznu_course_selection";
+    const getCookie = (name) => {
+      let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
+    };
+    const isNewUv = !getCookie(cookieName);
+    
+    // 如果是新访客，为其写入一年的标记 Cookie
+    if (isNewUv) {
+      document.cookie = `${cookieName}=1; path=/; max-age=31536000; samesite=lax`;
+    }
+
+    try {
+      // 3. 向 Vercount 发送 POST 请求上报并获取独立统计数据
+      const response = await fetch(apiEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: targetUrl, isNewUv: isNewUv })
+      });
+      
+      if (response.ok) {
+        const json = await response.json();
+        if (json && json.status === "success" && json.data) {
+          const data = json.data;
+          
+          // 4. 更新 DOM 并展示组件
+          const pvContainer = document.getElementById('busuanzi_container_site_pv');
+          const uvContainer = document.getElementById('busuanzi_container_site_uv');
+          const pvValue = document.getElementById('busuanzi_value_site_pv');
+          const uvValue = document.getElementById('busuanzi_value_site_uv');
+          
+          if (pvValue) pvValue.textContent = data.site_pv || 0;
+          if (uvValue) uvValue.textContent = data.site_uv || 0;
+          
+          if (pvContainer) pvContainer.style.display = 'inline';
+          if (uvContainer) uvContainer.style.display = 'inline';
+        }
       }
-      if (uvContainer && uvValue) {
-        uvValue.textContent = '888';
-        uvContainer.style.display = 'inline';
-      }
-    }, 300);
-  }
+    } catch (error) {
+      console.error("Vercount API request failed:", error);
+    }
+  })();
 </script>
 <div class="footer">
   <div>数据整理自《杭州师范大学2025级专业培养方案》；本网页为本地静态页面，进度保存在浏览器 localStorage。</div>
