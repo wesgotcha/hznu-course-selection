@@ -1296,14 +1296,8 @@ button.danger:hover {
   // 本地开发环境（Live Server/本地文件）下的不蒜子数据 Mock 预览
   if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') {
     setTimeout(() => {
-      const pvContainer = document.getElementById('busuanzi_container_site_pv');
       const uvContainer = document.getElementById('busuanzi_container_site_uv');
-      const pvValue = document.getElementById('busuanzi_value_site_pv');
       const uvValue = document.getElementById('busuanzi_value_site_uv');
-      if (pvContainer && pvValue) {
-        pvValue.textContent = '999';
-        pvContainer.style.display = 'inline';
-      }
       if (uvContainer && uvValue) {
         uvValue.textContent = '888';
         uvContainer.style.display = 'inline';
@@ -1314,15 +1308,8 @@ button.danger:hover {
 <div class="footer">
   <div>数据整理自《杭州师范大学2025级专业培养方案》；本网页为本地静态页面，进度保存在浏览器 localStorage。</div>
   <div style="margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
-    <img src="https://visitor-badge.laobi.icu/badge?page_id=wesgotcha.hznu-course-selection-pages-counter&left_color=%230ABAB5&right_color=%23000000&radius=8" alt="Visitor Count" style="height: 20px;" />
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=wesgotcha.hznu-course-selection-github-counter" alt="Repo Views" style="height: 20px;" />
     
-    <span id="busuanzi_container_site_pv" style="display: none;">
-      <span style="height: 20px; box-sizing: border-box; display: inline-flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; font-family: var(--font-sans); font-size: 11px; vertical-align: middle;">
-        <span style="background: var(--border-color); color: var(--text-secondary); padding: 0 8px; height: 100%; display: flex; align-items: center; font-weight: 500;">PV</span>
-        <span id="busuanzi_value_site_pv" style="background: var(--bg-card); color: var(--text-primary); padding: 0 8px; height: 100%; display: flex; align-items: center; font-weight: 600;"></span>
-      </span>
-    </span>
-
     <span id="busuanzi_container_site_uv" style="display: none;">
       <span style="height: 20px; box-sizing: border-box; display: inline-flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; font-family: var(--font-sans); font-size: 11px; vertical-align: middle;">
         <span style="background: var(--border-color); color: var(--text-secondary); padding: 0 8px; height: 100%; display: flex; align-items: center; font-weight: 500;">UV</span>
