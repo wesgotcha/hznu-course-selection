@@ -1,5 +1,7 @@
 # 🎓 HZNU 2025 级信息学院专业选课 & 毕业达标管理系统
 
+![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=wesgotcha.hznu-course-selection&left_color=%230ABAB5&right_color=%23000000&radius=8)
+
 这是一个针对**杭州师范大学 2025 级信息学院专业本科培养方案**量身定制的课程进度与毕业达标管理工具。系统采用纯静态网页技术架构，支持本地持久化存储，旨在帮助同学们清晰规划修读路径，实现实时计算学分、直观对比、自主查漏补缺。
 
 ---
